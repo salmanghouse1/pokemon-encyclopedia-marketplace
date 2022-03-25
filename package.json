@@ -7,7 +7,8 @@
     "jwt-decode": "^3.1.2",
     "mongodb": "^4.4.1",
     "mongoose": "^6.2.7",
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "reactjs-videobg": "^1.3.0"
   },
   "name": "bus-tracker",
   "description": "",
