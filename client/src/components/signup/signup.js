@@ -3,6 +3,7 @@
 // import Auth from "../../utils/auth";
 import React from "react";
 import {Link} from "react-router-dom";
+import { Button } from "@mantine/core";
 
 const Signup = () => {
   return (
@@ -27,7 +28,7 @@ const Signup = () => {
                 id="password"
                 value="{formState.password}"
               />
-              <button type="submit">Submit</button>
+              <Button color="cyan" type="submit">Submit</Button>
             </form>
           </div>
         </div>
