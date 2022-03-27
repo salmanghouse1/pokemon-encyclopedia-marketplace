@@ -8,7 +8,6 @@ const typeDefs = gql`
     lastname: String
     email: String
   }
-  
 
   # type getCard{
   #   id:String
@@ -38,6 +37,7 @@ const typeDefs = gql`
   #   }
   type Query {
     user: User
+    GetUser: User
     # getCard(id:!ID):[getCard]
     # getFavs(_id:!ID):[getFavs]
   }
