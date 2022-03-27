@@ -26,7 +26,7 @@ const userSchema = new Schema({
   wishlist: [wishlistSchemaVar.schema],
   history: [historySchemaVar.schema],
   owned: [ownedSchemaVar.schema],
-  orders: [],
+  orders: [ordersSchemaVar.schema],
 });
 
 // set up pre-save middleware to create password
