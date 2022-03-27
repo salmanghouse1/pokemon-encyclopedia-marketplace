@@ -6,12 +6,19 @@ const ownedSchemaVar = require("./owned");
 const ordersSchemaVar = require("./orders");
 
 const userSchema = new Schema({
-  username: {
+  firstname: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
     trim: true,
   },
+  lastname: {
+    type: String,
+    required: true,
+    unique: false,
+    trim: true,
+  },
+
   email: {
     type: String,
     required: true,
@@ -23,10 +30,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  wishlist: [wishlistSchemaVar.schema],
-  history: [historySchemaVar.schema],
-  owned: [ownedSchemaVar.schema],
-  orders: [ordersSchemaVar.schema],
+  // wishlist: [wishlistSchemaVar.schema],
+  // history: [historySchemaVar.schema],
+  // owned: [ownedSchemaVar.schema],
+  // orders: [ordersSchemaVar.schema],
 });
 
 // set up pre-save middleware to create password

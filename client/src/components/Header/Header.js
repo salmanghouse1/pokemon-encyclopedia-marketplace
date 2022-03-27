@@ -27,10 +27,7 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/user/login"
-                  class="btn btn-ghost normal-case text-md"
-                >
+                <Link to="/login" class="btn btn-ghost normal-case text-md">
                   Login to see Card Prices
                 </Link>
               </li>

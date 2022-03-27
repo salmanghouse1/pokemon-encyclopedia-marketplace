@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import Auth from "../../utils/auth";
-import { ADD_USER } from "../../utils/mutations";
+import Auth from "./../../utils/auth";
+import { ADD_USER } from "./../../utils/mutations";
 import { Link } from "react-router-dom";
 
 function Signup(props) {
+  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [addUser] = useMutation(ADD_USER);
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const mutationResponse = await ADD_USER({
@@ -15,9 +18,10 @@ function Signup(props) {
         lastname: formState.lastName,
       },
     });
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
   };
-  const token = mutationResponse.data.addUser.token;
-  Auth.login(token);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -90,14 +94,15 @@ function Signup(props) {
                 </button>
               </div>
               <div class="card-actions justify-start">
-                <Link to="/user/login">
-                  <div class="badge badge-outline-primary">Login</div>
+                <Link to="/login">
+                  <div class="badge badge-outline-primary">
+                    No I want to Login
+                  </div>
                 </Link>
               </div>
             </div>
           </div>
         </form>
-        {error && <div>Sign up failed</div>}
       </div>
     </main>
   );

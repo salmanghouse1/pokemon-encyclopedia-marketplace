@@ -8,6 +8,6 @@ const ownedSchema = new Schema({
   },
 });
 
-const ownedSchemaVar = model("historyDataSchema", historyDataSchema);
+const ownedSchemaVar = model("ownedDataSchema", ownedSchema);
 
 module.exports = ownedSchemaVar;

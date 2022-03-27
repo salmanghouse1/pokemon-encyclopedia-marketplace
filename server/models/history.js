@@ -2,12 +2,12 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const historySchema = new Schema({
-  History: {
+  history: {
     type: String,
     required: false,
   },
 });
 
-const historySchemaVar = model("historyDataSchema", historyDataSchema);
+const historySchemaVar = model("historySchema", historySchema);
 
 module.exports = historySchemaVar;
