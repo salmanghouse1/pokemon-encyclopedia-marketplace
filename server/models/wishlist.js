@@ -1,14 +1,13 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const wishlistDataSchema = new Schema({
-  
+const wishlistSchema = new Schema({
   wishlist: {
     type: String,
     required: false,
-  }
+  },
 });
 
-const Wishlist = model("wishlistDataSchema", wishlistDataSchema);
+const wishlistSchemaVar = model("wishlistSchema", wishlistSchema);
 
-module.exports = Wishlist;
+module.exports = wishlistSchemaVar;
