@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const wishlistSchemaVar = require("./wishlist");
 const historySchemaVar = require("./history");
 const ownedSchemaVar = require("./owned");
+const ordersSchemaVar = require("./orders");
 
 const userSchema = new Schema({
   username: {
@@ -22,18 +23,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  wishlist: {
-    type: [{ type: wishlistSchemaVar }],
-    required: false,
-  },
-  history: {
-    type: [{ type: historySchemaVar }],
-    required: false,
-  },
-  owned: {
-    type: [{ type: ownedSchemaVar }],
-    required: false,
-  },
+  wishlist: [wishlistSchemaVar.schema],
+  history: [historySchemaVar.schema],
+  owned: [ownedSchemaVar.schema],
+  orders: [],
 });
 
 // set up pre-save middleware to create password

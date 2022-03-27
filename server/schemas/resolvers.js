@@ -1,5 +1,9 @@
 const resolvers = {
   Query: {
-    // logic here remains the same
+    human(obj, args, context, info) {
+      return context.db
+        .loadHumanByID(args.id)
+        .then((userData) => new Human(userData));
+    },
   },
 };
