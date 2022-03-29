@@ -10,12 +10,12 @@ function Signup(props) {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const mutationResponse = await ADD_USER({
+    const mutationResponse = await addUser({
       variables: {
         email: formState.email,
         password: formState.password,
-        firstname: formState.firstName,
-        lastname: formState.lastName,
+        firstName: formState.firstName,
+        lastName: formState.lastName,
       },
     });
     const token = mutationResponse.data.addUser.token;
@@ -32,7 +32,7 @@ function Signup(props) {
   return (
     <main>
       <div>
-        <h4>Sign Up</h4>
+        <h4>Sign Me Up</h4>
 
         <form onSubmit={handleFormSubmit}>
           <div
@@ -41,22 +41,24 @@ function Signup(props) {
           >
             <figure>
               <div class="form-control w-full max-w-xs">
-                <div>
-                  x<label htmlFor="firstName">First Name:</label>
-                  <input
-                    placeholder="First"
-                    name="firstName"
-                    type="firstName"
-                    id="firstName"
-                    onChange={handleChange}
-                  />
-                </div>
+                <label htmlFor="firstName">First Name:</label>
+                <input
+                  placeholder="First"
+                  name="firstName"
+                  type="firstName"
+                  id="firstName"
+                  onChange={handleChange}
+                  class="input input-bordered w-full max-w-xs"
+                />
+                <label htmlFor="firstName">Last Name:</label>
+
                 <input
                   placeholder="Last"
                   name="lastName"
                   type="lastName"
                   id="lastName"
                   onChange={handleChange}
+                  class="input input-bordered w-full max-w-xs"
                 />
 
                 <label class="label">
@@ -79,7 +81,7 @@ function Signup(props) {
                   placeholder="******"
                   name="password"
                   type="password"
-                  id="pwd"
+                  id="password"
                   onChange={handleChange}
                   class="input input-bordered w-full max-w-xs"
                 ></input>

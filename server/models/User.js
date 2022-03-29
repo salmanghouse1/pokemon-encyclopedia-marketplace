@@ -1,21 +1,20 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const { Schema } = mongoose;
 const wishlistSchemaVar = require("./wishlist");
 const historySchemaVar = require("./history");
 const ownedSchemaVar = require("./owned");
 const ordersSchemaVar = require("./orders");
 
 const userSchema = new Schema({
-  firstname: {
+  firstName: {
     type: String,
     required: true,
-    unique: false,
     trim: true,
   },
-  lastname: {
+  lastName: {
     type: String,
     required: true,
-    unique: false,
     trim: true,
   },
 
@@ -36,7 +35,6 @@ const userSchema = new Schema({
   // orders: [ordersSchemaVar.schema],
 });
 
-// set up pre-save middleware to create password
 userSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {
     const saltRounds = 10;
@@ -48,9 +46,9 @@ userSchema.pre("save", async function (next) {
 
 // compare the incoming password with the hashed password
 userSchema.methods.isCorrectPassword = async function (password) {
-  return bcrypt.compare(password, this.password);
+  return await bcrypt.compare(password, this.password);
 };
 
-const User = model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

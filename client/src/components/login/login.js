@@ -57,7 +57,7 @@ function Login(props) {
                   placeholder="******"
                   name="password"
                   type="password"
-                  id="pwd"
+                  id="password"
                   onChange={handleChange}
                   class="input input-bordered w-full max-w-xs"
                 ></input>
@@ -67,9 +67,11 @@ function Login(props) {
               <h2 class="card-title text-white">Login</h2>
               <p class="text-secondary">Enter Login Details</p>
               <div class="card-actions justify-end">
-                <button type="submit" class="btn btn-primary">
-                  Login
-                </button>
+                <Link to="/game-stats">
+                  <button type="submit" class="btn btn-primary">
+                    Login
+                  </button>
+                </Link>
               </div>
 
               <div class="card-actions justify-start">

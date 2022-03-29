@@ -2,6 +2,8 @@ const faker = require("faker");
 
 const db = require("../config/connection");
 const { Thought, User } = require("../models");
+const fetch = require("node-fetch"); //npm install node-fetch
+require("dotenv").config();
 
 db.once("open", async () => {
   await User.deleteMany({});
@@ -12,7 +14,7 @@ db.once("open", async () => {
   for (let i = 0; i < 50; i += 1) {
     const firstName = faker.internet.userName();
     const lastName = faker.internet.userName();
-    const email = faker.internet.email(firstName+lastName);
+    const email = faker.internet.email(firstName + lastName);
     const password = faker.internet.password();
 
     userData.push({ firstName, lastName, email, password });
@@ -74,6 +76,7 @@ db.once("open", async () => {
   //     { runValidators: true }
   //   );
   // }
+ 
 
   console.log("all done!");
   process.exit(0);
