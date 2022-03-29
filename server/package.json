@@ -4,19 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeders/seeds.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^2.15.0",
-    "dot-env": "^0.0.1",
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "faker": "^4.1.0",
     "graphql": "^15.8.0",
-    "jwt-decode": "^3.1.2",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.4.1",
     "mongoose": "^6.2.8",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "stripe": "^8.213.0"
   }
 }
