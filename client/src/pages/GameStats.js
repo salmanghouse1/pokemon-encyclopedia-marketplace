@@ -6,35 +6,61 @@ import mp4 from "./../assets/videos/video.mp4";
 // const fetch = require("node-fetch");
 import Login from "../components/login/login";
 import Auth from "../utils/auth";
+const [count, setCount] = React.useState(0);
+const [initialResponse, setResponse] = React.useState(0);
+
 const GameStats = () => {
   if (Auth.loggedIn()) {
+    async function fetchFunction() {
+      number = -5;
+      number += 5;
+      try {
+        const response = await fetch(
+          `https://pokeapi.co/api/v2/pokemon?limit=5&offset=${number}`
+        );
+        const json = await response.json();
+      } catch (err) {
+        throw err;
+        console.log(err);
+      }
+    }
+
     return (
       <div>
         <VideoBg>
           <VideoBg.Source src={mp4} type="video/mp4" />
         </VideoBg>
         <h1>Game Stats</h1>
-        <div class="flex place-items-center space-between flex-wrap">
-          <div class="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
-            <figure>
-              <img
-                src="https://api1.lorem.space/image/car?w=400&h=225"
-                alt="car!"
-              />
-            </figure>
-            <div class="card-body">
-              <h2 class="card-title text-white">Life hack</h2>
-              <p class="text-secondary">How to park your car at your garage?</p>
+        json
+        <div>
+          {this.state.persons.map((person, index) => {
+            return (
+              <div class="flex place-items-center space-between flex-wrap">
+                <div class="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
+                  <figure>
+                    <img
+                      src="https://api1.lorem.space/image/car?w=400&h=225"
+                      alt="car!"
+                    />
+                  </figure>
+                  <div class="card-body">
+                    <h2 class="card-title text-white">Life hack</h2>
+                    <p class="text-secondary">
+                      How to park your car at your garage?
+                    </p>
 
-              <div class="card-actions justify-end">
-                <button class="btn btn-primary">Learn now!</button>
+                    <div class="card-actions justify-end">
+                      <button class="btn btn-primary">Learn now!</button>
+                    </div>
+                    <div class="card-actions justify-start text-secondary">
+                      <div class="badge badge-outline-primary">Fashion</div>
+                      <div class="badge badge-outline-primary">Products</div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="card-actions justify-start text-secondary">
-                <div class="badge badge-outline-primary">Fashion</div>
-                <div class="badge badge-outline-primary">Products</div>
-              </div>
-            </div>
-          </div>
+            );
+          })}
 
           <div class="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
             <figure>
