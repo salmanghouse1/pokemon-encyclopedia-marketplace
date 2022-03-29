@@ -6,22 +6,20 @@ import mp4 from "./../assets/videos/video.mp4";
 // const fetch = require("node-fetch");
 import Login from "../components/login/login";
 import Auth from "../utils/auth";
-const [count, setCount] = React.useState(0);
-const [initialResponse, setResponse] = React.useState(0);
+import ProductList from "./GameStats.js";
 
 const GameStats = () => {
   if (Auth.loggedIn()) {
-    
-
     return (
       <div>
         <VideoBg>
           <VideoBg.Source src={mp4} type="video/mp4" />
         </VideoBg>
         <h1>Game Stats</h1>
-        json
-        <div>
-          {this.state.persons.map((person, index) => {
+        {
+          <ProductList />
+
+          /* {this.state.persons.map((person, index) => {
             return (
               <div class="flex place-items-center space-between flex-wrap">
                 <div class="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
@@ -128,6 +126,8 @@ const GameStats = () => {
             </div>
           </div>
         </div>
+      </div> */
+        }
       </div>
     );
   } else {

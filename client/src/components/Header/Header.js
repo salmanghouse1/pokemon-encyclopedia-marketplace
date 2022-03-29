@@ -1,8 +1,9 @@
 import React from "react";
 import { Routes, Route, Link, Outlet } from "react-router-dom";
 import Cart from "../Cart/";
+import Auth from "../../utils/auth";
 
-const Header = () => {
+function Header(){
   
   if(Auth.loggedIn()){
   return (
@@ -43,6 +44,7 @@ const Header = () => {
                   Contact
                 </Link>
               </li>
+              
               <li>
                   <Cart/>
                 
@@ -112,6 +114,6 @@ const Header = () => {
       </div>
     </div>
   );
-};
+}};
 
 export default Header;

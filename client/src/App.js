@@ -1,6 +1,8 @@
 import "./App.css";
 
-import { Header, Footer } from "./components/index";
+import Header from "./components/Header/Header";
+
+import Footer from "./components/Footer/Footer";
 import GameStats from "./pages/GameStats";
 import Home from "./pages/Home";
 import Profile from "./pages/profile";

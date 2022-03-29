@@ -44,11 +44,11 @@ function ProductItem(item) {
 
               <div class="flex place-items-center space-between flex-wrap">
                 <div class="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
-      <Link to={`/products/${_id}`}>
+      <Link to={}>
                   <figure>
                     <img
-          alt={name}
-          src={`/images/${image}`}
+          alt={}
+          src={}
                     />
                   </figure>
                   </Link>
