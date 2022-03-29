@@ -18,6 +18,26 @@ const typeDefs = gql`
     front_default: String
     front_shiny: String
   }
+  type Category {
+    _id: ID
+    name: String
+  }
+
+  type Product {
+    _id: ID
+    name: String
+    description: String
+    image: String
+    quantity: Int
+    price: Float
+    category: Category
+  }
+
+  type Order {
+    _id: ID
+    purchaseDate: String
+    products: [Product]
+  }
 
   #  type stats(order:Int){
 
@@ -37,6 +57,10 @@ const typeDefs = gql`
     token: ID
     user: User
   }
+
+  type Checkout {
+    session: ID
+  }
   # type Product {
   #   _id: ID
   #   name: String
@@ -54,9 +78,15 @@ const typeDefs = gql`
   # images:String
   #   }
   type Query {
+    categories: [Category]
+    products(category: ID, name: String): [Product]
+    product(_id: ID!): Product
     user: User
     GetUser: User
     getPokemon(name: String!): Pokemon
+
+    order(_id: ID!): Order
+    checkout(products: [ID]!): Checkout
     # pokemon:Pokemon
     # pokemonDetails:PokemonDetails
 
@@ -65,19 +95,11 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addOrder(products: [ID]!): Order
+    updateUser(firstName: String, lastName: String, email: String, password: String): User
+    updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
-    addUser(
-      firstName: String!
-      lastName: String!
-      email: String!
-      password: String!
-    ): Auth
-    updateUser(
-      firstName: String
-      lastName: String
-      email: String
-      password: String
-    ): User
   }
 `;
 
