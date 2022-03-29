@@ -11,19 +11,7 @@ const [initialResponse, setResponse] = React.useState(0);
 
 const GameStats = () => {
   if (Auth.loggedIn()) {
-    async function fetchFunction() {
-      number = -5;
-      number += 5;
-      try {
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon?limit=5&offset=${number}`
-        );
-        const json = await response.json();
-      } catch (err) {
-        throw err;
-        console.log(err);
-      }
-    }
+    
 
     return (
       <div>

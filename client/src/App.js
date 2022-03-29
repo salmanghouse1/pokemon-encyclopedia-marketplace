@@ -7,6 +7,9 @@ import Profile from "./pages/profile";
 import Contact from "./pages/Contact";
 import Login from "./components/login/login";
 import Signup from "./components/signup/signup";
+import Detail from "./pages/Detail";
+import Success from "./pages/Success";
+import OrderHistory from "./pages/OrderHistory";
 import {
   ApolloClient,
   InMemoryCache,
@@ -50,6 +53,10 @@ function App() {
           <Route path="contact" element={<Contact />}></Route>
           {/* <Route path="user" element={<User />}></Route> */}
           <Route exact path="/profile/:username?" element={<Profile />} />
+
+          <Route exact path="/success" component={Success} />
+          <Route exact path="/orderHistory" component={OrderHistory} />
+          <Route exact path="/products/:id" component={Detail} />
         </Route>
       </Routes>
     </ApolloProvider>
