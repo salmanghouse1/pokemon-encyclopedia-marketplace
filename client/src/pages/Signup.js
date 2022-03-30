@@ -36,11 +36,11 @@ function Signup(props) {
 
         <form onSubmit={handleFormSubmit}>
           <div
-            class="card w-96 glass flex-shrink ml-6 mr-6 mt-6"
-            Style="margin:0 auto;"
+            className="card w-96 glass flex-shrink ml-6 mr-6 mt-6"
+            style={{ margin: "0 auto" }}
           >
             <figure>
-              <div class="form-control w-full max-w-xs">
+              <div className="form-control w-full max-w-xs">
                 <label htmlFor="firstName">First Name:</label>
                 <input
                   placeholder="First"
@@ -48,7 +48,7 @@ function Signup(props) {
                   type="firstName"
                   id="firstName"
                   onChange={handleChange}
-                  class="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full max-w-xs"
                 />
                 <label htmlFor="firstName">Last Name:</label>
 
@@ -58,11 +58,11 @@ function Signup(props) {
                   type="lastName"
                   id="lastName"
                   onChange={handleChange}
-                  class="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full max-w-xs"
                 />
 
-                <label class="label">
-                  <span class="label-text">Email</span>
+                <label className="label">
+                  <span className="label-text">Email</span>
                 </label>
 
                 <input
@@ -71,11 +71,11 @@ function Signup(props) {
                   type="email"
                   id="email"
                   onChange={handleChange}
-                  class="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full max-w-xs"
                 ></input>
 
-                <label class="label">
-                  <span class="label-text-alt">Password</span>
+                <label className="label">
+                  <span className="label-text-alt">Password</span>
                 </label>
                 <input
                   placeholder="******"
@@ -83,21 +83,21 @@ function Signup(props) {
                   type="password"
                   id="password"
                   onChange={handleChange}
-                  class="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full max-w-xs"
                 ></input>
               </div>
             </figure>
-            <div class="card-body">
-              <h2 class="card-title text-white">Signup</h2>
-              <p class="text-secondary">Fill Out</p>
-              <div class="card-actions justify-end">
-                <button type="submit" class="btn btn-primary">
+            <div className="card-body">
+              <h2 className="card-title text-white">Signup</h2>
+              <p className="text-secondary">Fill Out</p>
+              <div className="card-actions justify-end">
+                <button type="submit" className="btn btn-primary">
                   Signup
                 </button>
               </div>
-              <div class="card-actions justify-start">
+              <div className="card-actions justify-start">
                 <Link to="/login">
-                  <div class="badge badge-outline-primary">
+                  <div className="badge badge-outline-primary">
                     No I want to Login
                   </div>
                 </Link>

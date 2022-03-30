@@ -29,16 +29,16 @@ function Login(props) {
   };
   return (
     <form>
-      <div class="flex">
+      <div className="flex">
         <div
-          class="items-center flex-none content-center"
-          Style="margin:0 auto;"
+          className="items-center flex-none content-center"
+          style={{margin:"0 auto"}}
         >
-          <div class="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
+          <div className="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
             <figure>
-              <div class="form-control w-full max-w-xs">
-                <label class="label">
-                  <span class="label-text">Email/Username</span>
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Email/Username</span>
                 </label>
                 <input
                   placeholder="youremail@test.com"
@@ -46,11 +46,11 @@ function Login(props) {
                   type="email"
                   id="email"
                   onChange={handleChange}
-                  class="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full max-w-xs"
                 ></input>
 
-                <label class="label">
-                  <span class="label-text-alt">Password</span>
+                <label className="label">
+                  <span className="label-text-alt">Password</span>
                 </label>
 
                 <input
@@ -59,24 +59,24 @@ function Login(props) {
                   type="password"
                   id="password"
                   onChange={handleChange}
-                  class="input input-bordered w-full max-w-xs"
+                  className="input input-bordered w-full max-w-xs"
                 ></input>
               </div>
             </figure>
-            <div class="card-body">
-              <h2 class="card-title text-white">Login</h2>
-              <p class="text-secondary">Enter Login Details</p>
-              <div class="card-actions justify-end">
+            <div className="card-body">
+              <h2 className="card-title text-white">Login</h2>
+              <p className="text-secondary">Enter Login Details</p>
+              <div className="card-actions justify-end">
                 <Link to="/game-stats">
-                  <button type="submit" class="btn btn-primary">
+                  <button type="submit" className="btn btn-primary">
                     Login
                   </button>
                 </Link>
               </div>
 
-              <div class="card-actions justify-start">
+              <div className="card-actions justify-start">
                 <Link to="/signup">
-                  <div class="badge badge-outline-primary">
+                  <div className="badge badge-outline-primary">
                     No I want to Sign Up
                   </div>
                 </Link>

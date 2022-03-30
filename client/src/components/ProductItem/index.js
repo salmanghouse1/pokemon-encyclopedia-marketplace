@@ -34,26 +34,26 @@ function ProductItem(item) {
   };
 
   return (
-    <div class="flex place-items-center space-between flex-wrap">
-      <div class="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
+    <div className="flex place-items-center space-between flex-wrap">
+      <div className="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
         <Link to={`products/${_id}`}>
           <figure>
             <img alt={name} src={`/images/${image}`} />
           </figure>
         </Link>
-        <div class="card-body">
-          <h2 class="card-title text-white">{name}</h2>
-          <p class="text-secondary">{description}</p>
+        <div className="card-body">
+          <h2 className="card-title text-white">{name}</h2>
+          <p className="text-secondary">{description}</p>
 
-          <div class="card-actions justify-end">
+          <div className="card-actions justify-end">
             <span>$</span>
-            <button class="btn btn-primary" onClick={addToCart}>
+            <button className="btn btn-primary" onClick={addToCart}>
               Add To Cart
             </button>
           </div>
-          <div class="card-actions justify-start text-secondary">
-            <div class="badge badge-outline-primary">{category}</div>
-            <div class="badge badge-outline-primary">
+          <div className="card-actions justify-start text-secondary">
+            <div className="badge badge-outline-primary">{category}</div>
+            <div className="badge badge-outline-primary">
               {quantity} {pluralize("item", quantity)} in stock
             </div>
           </div>

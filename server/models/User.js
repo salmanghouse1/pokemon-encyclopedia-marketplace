@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const wishlistSchemaVar = require("./wishlist");
 const historySchemaVar = require("./history");
 const ownedSchemaVar = require("./owned");
-const ordersSchemaVar = require("./orders");
+const Order = require("./Order");
 
 const userSchema = new Schema({
   firstName: {
@@ -29,10 +29,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  // wishlist: [wishlistSchemaVar.schema],
-  // history: [historySchemaVar.schema],
-  // owned: [ownedSchemaVar.schema],
-  // orders: [ordersSchemaVar.schema],
+  wishlist: [wishlistSchemaVar.schema],
+  history: [historySchemaVar.schema],
+  owned: [ownedSchemaVar.schema],
+  orders: [Order.schema],
 });
 
 userSchema.pre("save", async function (next) {
