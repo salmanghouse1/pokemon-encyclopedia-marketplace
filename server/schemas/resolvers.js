@@ -2,6 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User } = require("../models");
 const { signToken } = require("../utils/auth");
 const fetch = require("node-fetch"); //npm install node-fetch
+const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 const resolvers = {
   Query: {
@@ -9,6 +10,7 @@ const resolvers = {
       const Users = User.find();
       return Users;
     },
+    
 categories: async () => {
       return await Category.find();
     },

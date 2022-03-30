@@ -44,7 +44,7 @@ function ProductList() {
   }
 
   return (
-    <div className="my-2">
+    <div>
       <h2>Our Products:</h2>
       {state.products.length ? (
         <div class="flex place-items-center space-between flex-wrap">
@@ -54,7 +54,9 @@ function ProductList() {
               _id={product._id}
               image={product.image}
               name={product.name}
+              description={product.description}
               price={product.price}
+              category={product.category}
               quantity={product.quantity}
             />
           ))}
