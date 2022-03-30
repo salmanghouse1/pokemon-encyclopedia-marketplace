@@ -210,18 +210,18 @@ db.once("open", async () => {
   await User.deleteMany({});
 
   // create user data
-  const userData = [];
+  // const userData = [];
 
-  for (let i = 0; i < 50; i += 1) {
-    const firstName = faker.internet.userName();
-    const lastName = faker.internet.userName();
-    const email = faker.internet.email(firstName + lastName);
-    const password = faker.internet.password();
+  // for (let i = 0; i < 50; i += 1) {
+  //   const firstName = faker.internet.userName();
+  //   const lastName = faker.internet.userName();
+  //   const email = faker.internet.email(firstName + lastName);
+  //   const password = faker.internet.password();
 
-    userData.push({ firstName, lastName, email, password });
-  }
+  //   userData.push({ firstName, lastName, email, password });
+  // }
 
-  const createdUsers = await User.collection.insertMany(userData);
+  // const createdUsers = await User.collection.insertMany(userData);
 
   await User.create({
     firstName: "Pamela",
