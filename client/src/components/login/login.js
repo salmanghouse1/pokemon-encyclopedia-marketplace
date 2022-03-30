@@ -28,7 +28,7 @@ function Login(props) {
     });
   };
   return (
-    <form>
+    <form onSubmit={handleFormSubmit()}>
       <div class="flex">
         <div
           class="items-center flex-none content-center"
@@ -67,11 +67,9 @@ function Login(props) {
               <h2 class="card-title text-white">Login</h2>
               <p class="text-secondary">Enter Login Details</p>
               <div class="card-actions justify-end">
-                <Link to="/game-stats">
-                  <button type="submit" class="btn btn-primary">
-                    Login
-                  </button>
-                </Link>
+                <button type="submit" class="btn btn-primary">
+                  Login
+                </button>
               </div>
 
               <div class="card-actions justify-start">

@@ -4,10 +4,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 // import { BrowserRouter } from "react-router-dom";
-// import * as serviceWorker from "./serviceWorker";s
-ReactDOM.render(
-  <App />,
+import * as serviceWorker from "./serviceWorker";
 
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
   document.getElementById("root")
 );
 

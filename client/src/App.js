@@ -42,7 +42,8 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div className="container">
-          {/* <StoreProvider> */}
+          <StoreProvider>
+            {/* <StoreProvider> */}
             <Nav />
             <Switch>
               <Route exact path="/" component={Home} />
@@ -53,7 +54,8 @@ function App() {
               <Route exact path="/products/:id" component={Detail} />
               <Route component={NoMatch} />
             </Switch>
-          {/* </StoreProvider> */}
+            {/* </StoreProvider> */}
+          </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>
