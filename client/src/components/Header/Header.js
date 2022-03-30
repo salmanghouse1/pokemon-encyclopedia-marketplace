@@ -57,7 +57,7 @@ function Header(){
       </div>
       <div>
         
-        <Outlet />
+        
       </div>
     </div>
 
@@ -109,8 +109,7 @@ function Header(){
         </header>
       </div>
       <div>
-        
-        <Outlet />
+      
       </div>
     </div>
   );

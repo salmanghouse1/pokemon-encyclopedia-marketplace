@@ -1,11 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Hero from "../components/Hero/Hero";
+import ProductList from "../components/ProductList";
+import CategoryMenu from "../components/CategoryMenu";
+import Cart from "../components/Cart";
 
 const Home = () => {
   return (
-    <div>
-      <Hero></Hero>
+    <div className="container">
+      <CategoryMenu />
+      <ProductList />
+      <Cart />
     </div>
   );
 };

@@ -7,7 +7,7 @@ import Signup from "./../components/signup/signup";
 const User = () => {
   return (
     <div>
-      <Outlet></Outlet>
+  
       <Link to="/login">
         <button>I have an account</button>
       </Link>
