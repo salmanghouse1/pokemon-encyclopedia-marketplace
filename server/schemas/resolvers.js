@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Category,Product } = require("../models");
+const { User, Category, Product } = require("../models");
 const { signToken } = require("../utils/auth");
 const fetch = require("node-fetch"); //npm install node-fetch
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
@@ -9,6 +9,9 @@ const resolvers = {
     GetUser: async (parent, args) => {
       const Users = User.find();
       return Users;
+    },
+    allproducts: async () => {
+      return await Product.find().populate("category");
     },
 
     categories: async () => {

@@ -8,7 +8,7 @@ import { idbPromise } from "../../utils/helpers";
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
 
-  const { image, name, _id, price, quantity, description,category } = item;
+  const { image, name, _id, price, quantity, description, category } = item;
 
   const { cart } = state;
 
@@ -38,7 +38,7 @@ function ProductItem(item) {
       <div className="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
         <Link to={`products/${_id}`}>
           <figure>
-            <img alt={name} src={`/images/${image}`} />
+            <img alt={name} src={`${image}`} />
           </figure>
         </Link>
         <div className="card-body">
@@ -52,7 +52,7 @@ function ProductItem(item) {
             </button>
           </div>
           <div className="card-actions justify-start text-secondary">
-            <div className="badge badge-outline-primary">{category}</div>
+            <div className="badge badge-outline-primary">{category.name}</div>
             <div className="badge badge-outline-primary">
               {quantity} {pluralize("item", quantity)} in stock
             </div>

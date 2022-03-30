@@ -82,6 +82,7 @@ const typeDefs = gql`
     products(category: ID, name: String): [Product]
     product(_id: ID!): Product
     user: User
+    allproducts:[Product]
     GetUser: User
     getPokemon(name: String!): Pokemon
 
