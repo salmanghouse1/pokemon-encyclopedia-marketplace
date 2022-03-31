@@ -57,7 +57,16 @@ const typeDefs = gql`
     token: ID
     user: User
   }
-
+  type AdminUser {
+    _id: ID
+    firstName: String
+    lastName: String
+    email: String
+  }
+  type AdminAuth {
+    token: ID
+    user: AdminUser
+  }
   type Checkout {
     session: ID
   }
@@ -82,7 +91,7 @@ const typeDefs = gql`
     products(category: ID, name: String): [Product]
     product(_id: ID!): Product
     user: User
-    allproducts:[Product]
+    allproducts: [Product]
     GetUser: User
     getPokemon(name: String!): Pokemon
 
@@ -96,11 +105,22 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addUser(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+    ): Auth
     addOrder(products: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
+    updateUser(
+      firstName: String
+      lastName: String
+      email: String
+      password: String
+    ): User
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
+    adminlogin(email: String!, password: String!): AdminAuth
   }
 `;
 

@@ -14,11 +14,13 @@ import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Nav from "./components/Nav";
+import adminLoggedIn from "./pages/adminloggedIn";
 import { StoreProvider } from "./utils/GlobalState";
 import Success from "./pages/Success";
 import OrderHistory from "./pages/OrderHistory";
 import "./App.css";
 import "./output.css";
+import Admin from "./pages/admin";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -50,9 +52,16 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/admin" component={Admin} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/success" component={Success} />
               <Route exact path="/orderHistory" component={OrderHistory} />
+              <Route
+                exact
+                path="/admin/adminloggedin"
+                component={adminLoggedIn}
+              />
+              <Route exact path="/admin" component={Admin} />
               <Route exact path="/products/:id" component={Detail} />
               <Route component={NoMatch} />
             </Switch>

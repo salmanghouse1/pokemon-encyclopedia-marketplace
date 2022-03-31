@@ -33,6 +33,12 @@ class AuthService {
 
     window.location.assign("/");
   }
+  adminLoggedIn(idTokenadmin) {
+    // Saves user token to localStorage
+    localStorage.setItem("id_token_admin", idTokenadmin);
+
+    window.location.assign("/admin/loggedin");
+  }
 
   logout() {
     // Clear user token and profile data from localStorage

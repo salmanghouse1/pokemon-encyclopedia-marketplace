@@ -6,6 +6,9 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ALL_PRODUCTS, QUERY_PRODUCTS } from "../../utils/queries";
 import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif";
+import Auth from "./../../utils/auth";
+import { Link } from "react-router-dom";
+
 import VideoBg from "reactjs-videobg";
 // import ogg from "./videos/Neon.ogg";
 // import webm from "./videos/Neon.webm";
@@ -51,34 +54,43 @@ function ProductList() {
       (product) => product.category._id === currentCategory
     );
   }
-
-  return (
-    <div>
-      <VideoBg>
-        <VideoBg.Source src={mp4} type="video/mp4" />
-      </VideoBg>
-      <h2>Our Products:</h2>
-      {state.products.length ? (
-        <div className="flex place-items-center space-between flex-wrap">
-          {filterProducts().map((product) => (
-            <ProductItem
-              key={Math.random() * 10000}
-              _id={product._id}
-              image={product.image}
-              name={product.name}
-              description={product.description}
-              price={product.price}
-              category={product.category}
-              quantity={product.quantity}
-            />
-          ))}
-        </div>
-      ) : (
-        <h3>You haven't added any products yet!</h3>
-      )}
-      {loading ? <img src={spinner} alt="loading" /> : null}
-    </div>
-  );
+  if (Auth.loggedIn()) {
+    return (
+      <div>
+        <VideoBg>
+          <VideoBg.Source src={mp4} type="video/mp4" />
+        </VideoBg>
+        <h2>Our Products:</h2>
+        {state.products.length ? (
+          <div className="flex place-items-center space-between flex-wrap">
+            {filterProducts().map((product) => (
+              <ProductItem
+                key={Math.random() * 10000}
+                _id={product._id}
+                image={product.image}
+                name={product.name}
+                description={product.description}
+                price={product.price}
+                category={product.category}
+                quantity={product.quantity}
+              />
+            ))}
+          </div>
+        ) : (
+          <h3>You haven't added any products yet!</h3>
+        )}
+        {loading ? <img src={spinner} alt="loading" /> : null}
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Link to="/login">
+          <h1>Please Login</h1>
+        </Link>
+      </div>
+    );
+  }
 }
 
 export default ProductList;

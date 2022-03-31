@@ -81,7 +81,10 @@ function Nav() {
             <header className="header">
               <nav
                 className="navbar bg-gray-800"
-                style={{ background: "#131A22!important",justifyContent: "space-between" }}
+                style={{
+                  background: "#131A22!important",
+                  justifyContent: "space-between",
+                }}
               >
                 <Link className="normal-case text-white primary-content" to="/">
                   <h1>Pokemon Encyclopedia and Card Market</h1>

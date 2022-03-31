@@ -54,8 +54,10 @@ function ProductItem(item) {
           <div className="card-actions justify-start text-secondary">
             <div className="badge badge-outline-primary">{category.name}</div>
             <div className="badge badge-outline-primary">
-              {quantity} {pluralize("item", quantity)} in stock
+              <b>{price}</b>{quantity} {pluralize("item", quantity)} in stock
             </div>
+            <div className="badge badge-outline-primary" onClick="">❤️Wishlist</div>
+            <div className="badge badge-outline-primary">✔️Added</div>
           </div>
         </div>
       </div>

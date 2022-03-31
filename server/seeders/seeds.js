@@ -257,10 +257,10 @@ db.once("open", async () => {
   // const createdUsers = await User.collection.insertMany(userData);
 
   await User.create({
-    firstName: "Pamela",
-    lastName: "Washington",
-    email: "pamela@testmail.com",
-    password: "password12345",
+    firstName: "Salman",
+    lastName: "Ghoue",
+    email: "admin@gmail.com",
+    password: "p@ssw0rd12345@!",
     orders: [
       {
         products: [products[0]._id, products[0]._id, products[1]._id],

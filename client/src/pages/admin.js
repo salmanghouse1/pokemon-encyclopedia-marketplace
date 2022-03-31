@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Link } from "react-router-dom";
-import { LOGIN } from "../utils/mutations";
+import { ADMINLOGIN } from "../utils/mutations";
 import Auth from "../utils/auth";
 
-function Login(props) {
+function Admin(props) {
   const [formState, setFormState] = useState({ email: "", password: "" });
-  const [login, { error }] = useMutation(LOGIN);
+  const [adminlogin, { error }] = useMutation(ADMINLOGIN);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const mutationResponse = await login({
+      const mutationResponse = await adminlogin({
         variables: { email: formState.email, password: formState.password },
       });
-      const token = mutationResponse.data.login.token;
-      Auth.login(token);
+      const token = mutationResponse.data.adminlogin.idTokenadmin;
+      Auth.adminlogin(token);
     } catch (e) {
       console.log(e);
     }
@@ -27,8 +27,9 @@ function Login(props) {
       [name]: value,
     });
   };
+
   return (
-    <form>
+    <form onSubmit={handleFormSubmit}>
       <div className="flex">
         <div
           className="items-center flex-none content-center"
@@ -64,8 +65,8 @@ function Login(props) {
               </div>
             </figure>
             <div className="card-body">
-              <h2 className="card-title text-white">Login</h2>
-              <p className="text-secondary">Enter Login Details</p>
+              <h2 className="card-title text-white">Login, Admin</h2>
+              <p className="text-secondary">Enter Admin Details</p>
               <div className="card-actions justify-end">
                 <button type="submit" className="btn btn-primary">
                   Login
@@ -75,11 +76,8 @@ function Login(props) {
               <div className="card-actions justify-start">
                 <Link to="/signup">
                   <div className="badge badge-outline-primary">
-                    No I want to Sign Up
+                    No I am not an admin
                   </div>
-                </Link>
-                <Link to="/admin">
-                  <div className="badge badge-outline-primary">Admin</div>
                 </Link>
               </div>
             </div>
@@ -90,4 +88,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default Admin;
