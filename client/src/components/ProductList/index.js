@@ -54,7 +54,7 @@ function ProductList() {
       (product) => product.category._id === currentCategory
     );
   }
-  if (Auth.loggedIn()) {
+  if (Auth.loggedIn) {
     return (
       <div>
         <VideoBg>
