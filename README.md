@@ -25,6 +25,8 @@ As A Pokemon Enthusiant I want to buy pokemon cards and see data on pokemon.
 # Tech Used
 
 * React.js, html,css, js, node, mongodb, graphql, mongoose, JWT
+# NOTES
+* Make sure to seed with : "npm run seed"
 
 # Links
 
