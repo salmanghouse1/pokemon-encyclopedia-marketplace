@@ -28,7 +28,7 @@ function Login(props) {
     });
   };
   return (
-    <form>
+    <form onSubmit={handleFormSubmit}>
       <div className="flex">
         <div
           className="items-center flex-none content-center"
@@ -67,7 +67,7 @@ function Login(props) {
               <h2 className="card-title text-white">Login</h2>
               <p className="text-secondary">Enter Login Details</p>
               <div className="card-actions justify-end">
-                <button type="submit" className="btn btn-primary">
+                <button type="Submit" className="btn btn-primary">
                   Login
                 </button>
               </div>
