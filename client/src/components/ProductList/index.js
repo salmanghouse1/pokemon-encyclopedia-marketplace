@@ -6,11 +6,17 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ALL_PRODUCTS, QUERY_PRODUCTS } from "../../utils/queries";
 import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif";
+import VideoBg from "reactjs-videobg";
+// import ogg from "./videos/Neon.ogg";
+// import webm from "./videos/Neon.webm";
+import mp4 from "../../assets/videos/video.mp4";
+// import poster from "./img/poster.jpg";
 
 function ProductList() {
   const [state, dispatch] = useStoreContext();
 
-const { loading:allproductsLoading, data:allproductsData } = useQuery(QUERY_ALL_PRODUCTS);
+  const { loading: allproductsLoading, data: allproductsData } =
+    useQuery(QUERY_ALL_PRODUCTS);
 
   const { currentCategory } = state;
 
@@ -25,7 +31,7 @@ const { loading:allproductsLoading, data:allproductsData } = useQuery(QUERY_ALL_
       data.products.forEach((product) => {
         // idbPromise("products", "put", product);
       });
-    } 
+    }
     // else if (!loading) {
     //   // idbPromise("products", "get").then((products) => {
     //     dispatch({
@@ -48,12 +54,15 @@ const { loading:allproductsLoading, data:allproductsData } = useQuery(QUERY_ALL_
 
   return (
     <div>
+      <VideoBg>
+        <VideoBg.Source src={mp4} type="video/mp4" />
+      </VideoBg>
       <h2>Our Products:</h2>
       {state.products.length ? (
         <div className="flex place-items-center space-between flex-wrap">
           {filterProducts().map((product) => (
             <ProductItem
-              key={Math.random()*10000}
+              key={Math.random() * 10000}
               _id={product._id}
               image={product.image}
               name={product.name}

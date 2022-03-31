@@ -7,7 +7,6 @@ const ownedSchemaVar = require("./owned");
 const ordersSchemaVar = require("./orders");
 
 const customerSchema = new Schema({
-
   email: {
     type: String,
     required: true,
@@ -19,8 +18,6 @@ const customerSchema = new Schema({
   owned: [ownedSchemaVar.schema],
   orders: [ordersSchemaVar.schema],
 });
-
-
 
 const customer = mongoose.model("Customer", customerSchema);
 
