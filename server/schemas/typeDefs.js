@@ -7,6 +7,7 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
+    wishlist: [UserWishlist]
   }
 
   type Pokemon {
@@ -22,7 +23,10 @@ const typeDefs = gql`
     _id: ID
     name: String
   }
-
+  type UserWishlist {
+    _id: ID
+    pokemonName: String
+  }
   type Product {
     _id: ID
     name: String
@@ -38,6 +42,11 @@ const typeDefs = gql`
     purchaseDate: String
     products: [Product]
   }
+
+type getProductWishlist(_id:String){
+  firstName:String
+}
+
 
   #  type stats(order:Int){
 
@@ -86,6 +95,7 @@ const typeDefs = gql`
   # number:String
   # images:String
   #   }
+
   type Query {
     categories: [Category]
     products(category: ID, name: String): [Product]
@@ -94,7 +104,7 @@ const typeDefs = gql`
     allproducts: [Product]
     GetUser: User
     getPokemon(name: String!): Pokemon
-
+    getProductWishlist(_id: ID): User
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
     # pokemon:Pokemon
