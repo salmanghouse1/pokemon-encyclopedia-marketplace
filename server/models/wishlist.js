@@ -2,9 +2,8 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const wishlistSchema = new Schema({
-  pokemonName: {
+  Name: {
     type: String,
-    required: true,
   },
   Image: {
     type: String,

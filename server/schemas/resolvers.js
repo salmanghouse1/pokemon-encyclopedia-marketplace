@@ -6,10 +6,13 @@ const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 const resolvers = {
   Query: {
-    getProductWishlist: async (parent, args, context) => {
-      console.log(context);
-      const results = User.find({"_id":"62473ee09c7f854e161f04ce"}).populate("wishlist");
-      return results;
+    getProductWishlist: async (parent, { _id }, context) => {
+      userResult = await User.find({});
+      console.log(userResult);
+      return userResult;
+      // return User.find(
+      //   (getProductWishlist) => getProductWishlist.id === args.id
+      // ).populate("wishlist");
     },
 
     GetUser: async (parent, args) => {

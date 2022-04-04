@@ -14,15 +14,21 @@ db.once("open", async () => {
 
   console.log(data.results[0]);
 
-  favs = { pokemonName: "Charizard", order: "8", Image: "http://" };
+  await User.deleteMany({});
 
-  const wishlistinitial = [];
+  const favs = { Name: "Charizard", order: "8", Image: "http://" };
+
+  await User.create({
+    firstName: "Elijah",
+    lastName: "Holt",
+    email: "eholt@testmail.com",
+    password: "password12345",
+  });
 
   await User.findOneAndUpdate({
-    firstName: "randomfirstname4652",
-    lastName: "randomlastname4625",
-    email: "randomlastname@tes4tmail2265.com",
-    password: "password1234524526",
-    wishlist: favs,
+    firstName: "Elijah",
+    lastName: "Holt",
+    email: "eholt@testmail.com",
+    wishlist: [favs],
   });
 });

@@ -30,14 +30,15 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  wishlist: {
-    type: Schema.Types.ObjectId,
-    ref: "Wishlist",
-    required: false,
-  },
-  history: [historySchemaVar.schema],
-  owned: [ownedSchemaVar.schema],
-  orders: [Order.schema],
+  wishlist: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Wishlist",
+    },
+  ],
+  // history: [historySchemaVar.schema],
+  // owned: [ownedSchemaVar.schema],
+  // orders: [Order.schema],
 });
 
 userSchema.pre("save", async function (next) {
