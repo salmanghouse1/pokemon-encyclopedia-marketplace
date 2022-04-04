@@ -1,11 +1,23 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const { Schema } = mongoose;
-const wishlist = require("./wishlist");
+// const Wishlist = require("./wishlist");
 const historySchemaVar = require("./history");
 const ownedSchemaVar = require("./owned");
 const Order = require("./Order");
-const Wishlist = require("./wishlist");
+// const Wishlist = require("./wishlist");
+
+const wishlistSchema = new Schema({
+  Name: {
+    type: String,
+  },
+  Image: {
+    type: String,
+  },
+  order: {
+    type: String,
+  },
+});
 
 const userSchema = new Schema({
   firstName: {
@@ -30,12 +42,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  wishlist: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Wishlist",
-    },
-  ],
+  wishlist: [wishlistSchema],
   // history: [historySchemaVar.schema],
   // owned: [ownedSchemaVar.schema],
   // orders: [Order.schema],

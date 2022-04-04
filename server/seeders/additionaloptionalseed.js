@@ -7,28 +7,35 @@ require("dotenv").config();
 const { json } = require("express");
 
 db.once("open", async () => {
-  const response = await fetch(
-    "https://pokeapi.co/api/v2/pokemon?limit=12&offset=0"
-  );
-  const data = await response.json();
+  //   const response = await fetch(
+  //     "https://pokeapi.co/api/v2/pokemon?limit=12&offset=0"
+  //   );
+  //   const data = await response.json();
 
-  console.log(data.results[0]);
+  //   console.log(data.results[0]);
 
   await User.deleteMany({});
 
-  const favs = { Name: "Charizard", order: "8", Image: "http://" };
+  const favs = { Name: "Charizard", Image: "http://", order: "8" };
 
   await User.create({
     firstName: "Elijah",
     lastName: "Holt",
     email: "eholt@testmail.com",
     password: "password12345",
+    wishlist: [{ Name: "", Image: "", order: "" }],
   });
 
-  await User.findOneAndUpdate({
-    firstName: "Elijah",
-    lastName: "Holt",
+  const userUpdate = await User.findOne({
     email: "eholt@testmail.com",
-    wishlist: [favs],
   });
+
+  userUpdate.wishlist[0].Name = "Charizard";
+  userUpdate.wishlist[0].Image = "google.com";
+  userUpdate.wishlist[0].order = "8";
+
+  const updated = await userUpdate.save();
+  console.log("console Log" + updated);
+  console.log(userUpdate.wishlist.Name);
+  process.exit();
 });
