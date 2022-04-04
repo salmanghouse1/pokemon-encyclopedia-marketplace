@@ -34,8 +34,18 @@ db.once("open", async () => {
   userUpdate.wishlist[0].Image = "google.com";
   userUpdate.wishlist[0].order = "8";
 
+  console.log(userUpdate.wishlist);
+
   const updated = await userUpdate.save();
   console.log("console Log" + updated);
   console.log(userUpdate.wishlist.Name);
+
+  userUpdate.wishlist.push({
+    Name: "Squirtle",
+    Image: "google.com",
+    order: "11",
+  });
+  userUpdate.save();
+  console.log(userUpdate);
   process.exit();
 });
