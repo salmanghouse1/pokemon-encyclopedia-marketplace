@@ -25,6 +25,8 @@ const typeDefs = gql`
   }
   type UserWishlist {
     Name: String
+    Image:String
+    order:String
   }
   type Product {
     _id: ID
@@ -99,6 +101,7 @@ const typeDefs = gql`
     GetUser: User
     getPokemon(name: String!): Pokemon
     getProductWishlist(id: ID): [User]
+
     # query to use in graphql playground
     # query{
     #   getProductWishlist{
@@ -119,6 +122,13 @@ const typeDefs = gql`
   }
 
   type Mutation {
+    addToWishlist(
+      email: String
+      Name: String
+      Image: String
+      order: String
+    ): User
+
     addUser(
       firstName: String!
       lastName: String!

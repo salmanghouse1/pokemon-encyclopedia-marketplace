@@ -4,6 +4,7 @@ import { pluralize } from "../../utils/helpers";
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
+import { ADD_TO_WISHLIST } from "../../utils/mutations";
 
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
@@ -33,6 +34,12 @@ function ProductItem(item) {
     }
   };
 
+  const addToWishlistFunc = (event) => {
+    event.preventDefault();
+
+    ADD_TO_WISHLIST;
+  };
+
   return (
     <div className="flex place-items-center space-between flex-wrap">
       <div className="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
@@ -54,9 +61,12 @@ function ProductItem(item) {
           <div className="card-actions justify-start text-secondary">
             <div className="badge badge-outline-primary">{category.name}</div>
             <div className="badge badge-outline-primary">
-              <b>{price}</b>{quantity} {pluralize("item", quantity)} in stock
+              <b>{price}</b>
+              {quantity} {pluralize("item", quantity)} in stock
             </div>
-            <div className="badge badge-outline-primary" onClick="">❤️Wishlist</div>
+            <div className="badge badge-outline-primary" onClick="">
+              ❤️Wishlist
+            </div>
             <div className="badge badge-outline-primary">✔️Added</div>
           </div>
         </div>

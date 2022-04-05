@@ -51,6 +51,18 @@ export const QUERY_CATEGORIES = gql`
   }
 `;
 
+export const QUERY_ADD_TO_WISHLIST=
+
+
+
+gql`
+
+
+
+
+`
+
+
 export const QUERY_USER = gql`
   {
     user {

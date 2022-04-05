@@ -125,6 +125,20 @@ const resolvers = {
   },
 
   Mutation: {
+    addToWishlist: async (parent, args) => {
+      const results = await User.findOneAndUpdate(
+        { email: args.email },
+        {
+          $push: {
+            wishlist: { Name: args.Name, Image: args.Image, order: args.order },
+          },
+        },
+        { new: true }
+      );
+
+      return results;
+    },
+
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);

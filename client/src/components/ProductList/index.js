@@ -63,6 +63,7 @@ function ProductList() {
           {filterProducts().map((product) => (
             <ProductItem
               key={Math.random() * 10000}
+              userId={user.id}
               _id={product._id}
               image={product.image}
               name={product.name}
