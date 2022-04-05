@@ -27,7 +27,7 @@ export const ADD_TO_WISHLIST = gql`
   addToWishlist(email:$email,Name:$name,Image:$Image,order:$order){
     firstName
     lastName
-    wishlist{
+    wishlist{ 
       Name
       Image
       order

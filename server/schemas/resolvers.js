@@ -125,9 +125,9 @@ const resolvers = {
   },
 
   Mutation: {
-    addToWishlist: async (parent, args) => {
+    addToWishlist: async (parent, args, context) => {
       const results = await User.findOneAndUpdate(
-        { email: args.email },
+        { email: context.user.email },
         {
           $push: {
             wishlist: { Name: args.Name, Image: args.Image, order: args.order },
