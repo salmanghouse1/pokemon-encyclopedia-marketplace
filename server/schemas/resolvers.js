@@ -7,7 +7,7 @@ const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 const resolvers = {
   Query: {
     getProductWishlist: async (parent, { _id }, context) => {
-      userResult = await User.find({});
+      userResult = await User.find({}).populate("wishlist");
       console.log(userResult);
       return userResult;
       // return User.find(

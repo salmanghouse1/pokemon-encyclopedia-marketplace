@@ -63,5 +63,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 const User = mongoose.model("User", userSchema);
+const Wishlist = mongoose.model("Wishlist", wishlistSchema);
 
-module.exports = User;
+module.exports = { User, Wishlist };
