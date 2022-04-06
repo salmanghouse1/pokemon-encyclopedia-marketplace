@@ -34,12 +34,12 @@ function ProductItem(item) {
     }
   };
 
-  const addToWishlistFunc = (event) => {
+  const addToWishlistFunc = (event,name,) => {
     event.preventDefault();
 const [addWishlist] = useMutation(ADD_TO_WISHLIST);
 
   useEffect(() => {
-    async function saveOrder() {
+    async function saveWishlist() {
       
         const { data } = await addToWishlist({ variables: {  } });
         
@@ -71,7 +71,7 @@ const [addWishlist] = useMutation(ADD_TO_WISHLIST);
               <b>{price}</b>
               {quantity} {pluralize("item", quantity)} in stock
             </div>
-            <div className="badge badge-outline-primary" onClick="">
+            <div className="badge badge-outline-primary" onClick={addToWishlistFunc(event,this.name,this.image,this._id)}>
               ❤️Wishlist
             </div>
             <div className="badge badge-outline-primary">✔️Added</div>
