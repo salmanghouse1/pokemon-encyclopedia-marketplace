@@ -36,8 +36,15 @@ function ProductItem(item) {
 
   const addToWishlistFunc = (event) => {
     event.preventDefault();
+const [addWishlist] = useMutation(ADD_TO_WISHLIST);
 
-    ADD_TO_WISHLIST;
+  useEffect(() => {
+    async function saveOrder() {
+      
+        const { data } = await addToWishlist({ variables: {  } });
+        
+      }
+   
   };
 
   return (
