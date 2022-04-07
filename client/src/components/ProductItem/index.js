@@ -6,6 +6,13 @@ import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import { ADD_TO_WISHLIST } from "../../utils/mutations";
 
+
+
+
+
+
+
+
 function ProductItem(item) {
   const [state, dispatch] = useStoreContext();
 
@@ -34,18 +41,19 @@ function ProductItem(item) {
     }
   };
 
-  const addToWishlistFunc = (event,name,) => {
+  const addToWishlistFunc = (event,Name) => {
     event.preventDefault();
 const [addWishlist] = useMutation(ADD_TO_WISHLIST);
 
   useEffect(() => {
     async function saveWishlist() {
       
-        const { data } = await addToWishlist({ variables: {  } });
+        const { data } = await addToWishlist({ variables: {Name,order,Image  } });
         
       }
-   
-  };
+  }
+  )}
+  
 
   return (
     <div className="flex place-items-center space-between flex-wrap">
@@ -71,7 +79,7 @@ const [addWishlist] = useMutation(ADD_TO_WISHLIST);
               <b>{price}</b>
               {quantity} {pluralize("item", quantity)} in stock
             </div>
-            <div className="badge badge-outline-primary" onClick={addToWishlistFunc(event,this.name,this.image,this._id)}>
+            <div className="badge badge-outline-primary" onClick={addToWishlistFunc(this.name,this.image,this._id)}>
               ❤️Wishlist
             </div>
             <div className="badge badge-outline-primary">✔️Added</div>

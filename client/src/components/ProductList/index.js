@@ -18,6 +18,7 @@ function ProductList() {
   const { loading: allproductsLoading, data: allproductsData } =
     useQuery(QUERY_ALL_PRODUCTS);
 
+    
   const { currentCategory } = state;
 
   const { loading, data } = useQuery(QUERY_PRODUCTS);

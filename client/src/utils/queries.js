@@ -16,8 +16,6 @@ export const QUERY_PRODUCTS = gql`
   }
 `;
 
-
-
 export const QUERY_CHECKOUT = gql`
   query getCheckout($products: [ID]!) {
     checkout(products: $products) {
@@ -51,17 +49,11 @@ export const QUERY_CATEGORIES = gql`
   }
 `;
 
-export const QUERY_ADD_TO_WISHLIST=
+// export const QUERY_ADD_TO_WISHLIST=
 
+// gql`
 
-
-gql`
-
-
-
-
-`
-
+// `
 
 export const QUERY_USER = gql`
   {
