@@ -1,7 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Category, Product, Wishlist } = require("../models");
 const { signToken } = require("../utils/auth");
-const fetch = require("node-fetch"); //npm install node-fetch
+// const fetch = require("node-fetch"); //npm install node-fetch
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 const resolvers = {
@@ -106,7 +106,18 @@ const resolvers = {
 
       return { session: session.id };
     },
+    me: async (parent, args, context) => {
+      console.log(context);
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .select("-__v -password")
+          .populate("wishlist");
 
+        return userData;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
     getPokemon: async (parent, args) => {
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${args.name}/`,
@@ -125,6 +136,28 @@ const resolvers = {
   },
 
   Mutation: {
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError("Incorrect credentials");
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
     addToWishlist: async (parent, args, context) => {
       const results = await User.findOneAndUpdate(
         { email: context.user.email },
@@ -139,12 +172,6 @@ const resolvers = {
       return results;
     },
 
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
-
-      return { token, user };
-    },
     addOrder: async (parent, { products }, context) => {
       console.log(context);
       if (context.user) {
@@ -177,23 +204,7 @@ const resolvers = {
         { new: true }
       );
     },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
-
-      const token = signToken(user);
-
-      return { token, user };
-    },
+    
   },
 };
 

@@ -98,7 +98,7 @@ function Signup(props) {
               <div className="card-actions justify-start">
                 <Link to="/login">
                   <div className="badge badge-outline-primary">
-                    No I want to Login
+                    No I want to Login!!!
                   </div>
                 </Link>
               </div>

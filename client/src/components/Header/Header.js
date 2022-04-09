@@ -25,18 +25,10 @@ function Header() {
                 </li>
                 <li>
                   <Link
-                    to="/game-stats"
-                    className="btn btn-ghost normal-case text-md"
-                  >
-                    GameStats
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     to="/login"
                     className="btn btn-ghost normal-case text-md"
                   >
-                    Login to see Card Prices
+                    Login to Order
                   </Link>
                 </li>
                 <li>
@@ -50,8 +42,7 @@ function Header() {
                 <li>
                   <Link
                     to="/contact"
-                    className="btn btn-ghost normal-case text-md"
-                  >
+                    className="btn btn-ghost normal-case text-md">
                     Contact
                   </Link>
                 </li>

@@ -5,7 +5,7 @@ import Auth from "../../utils/auth";
 
 function Nav() {
   function showNavigation() {
-    if (Auth.loggedIn()) {
+    if (Auth.loggedIn) {
       return (
         <div className="container">
           <div>
@@ -29,18 +29,10 @@ function Nav() {
                   </li>
                   <li>
                     <Link
-                      to="/game-stats"
-                      className="btn btn-ghost normal-case text-md"
-                    >
-                      GameStats
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
                       to="/orderHistory"
                       className="btn btn-ghost normal-case text-md"
                     >
-                      Order History
+                      📜 Order History
                     </Link>
                   </li>
                   <li>
@@ -48,7 +40,7 @@ function Nav() {
                       to="/user"
                       className="btn btn-ghost normal-case text-md"
                     >
-                      User
+                      👤 User
                     </Link>
                   </li>
                   <li>
@@ -96,15 +88,7 @@ function Nav() {
                       to="/login"
                       className="btn btn-ghost normal-case text-md"
                     >
-                      Login to see Card Prices
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/signup"
-                      className="btn btn-ghost normal-case text-md"
-                    >
-                      Signup
+                      Login
                     </Link>
                   </li>
                   <li>
