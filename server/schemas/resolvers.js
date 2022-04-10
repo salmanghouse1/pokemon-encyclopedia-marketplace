@@ -1,6 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Category, Product, Wishlist } = require("../models");
-const { signToken } = require("../utils/auth");
+const { signToken, authMiddleware } = require("../utils/auth");
 // const fetch = require("node-fetch"); //npm install node-fetch
 const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
@@ -44,19 +44,14 @@ const resolvers = {
     product: async (parent, { _id }) => {
       return await Product.findById(_id).populate("category");
     },
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: "orders.products",
-          populate: "category",
-        });
-
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
-        return user;
-      }
-
-      throw new AuthenticationError("Not logged in");
+    users: async () => {
+      return User.find().select("-__v -password").populate("wishlist");
+    },
+    // get a user by username
+    user: async (parent, { email }) => {
+      return User.findOne({ email })
+        .select("-__v -password")
+        .populate("wishlist");
     },
     order: async (parent, { _id }, context) => {
       if (context.user) {
@@ -133,6 +128,17 @@ const resolvers = {
       console.log(name);
       return { name, order };
     },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id })
+          .select("-__v -password")
+          .populate("wishlist");
+
+        return userData;
+      }
+
+      throw new AuthenticationError("Not logged in");
+    },
   },
 
   Mutation: {
@@ -204,7 +210,6 @@ const resolvers = {
         { new: true }
       );
     },
-    
   },
 };
 
