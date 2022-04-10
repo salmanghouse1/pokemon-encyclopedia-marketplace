@@ -5,9 +5,15 @@ const { Schema } = mongoose;
 const historySchemaVar = require("./history");
 const ownedSchemaVar = require("./owned");
 const Order = require("./Order");
+const dateFormat = require("../utils/dateFormat");
 // const Wishlist = require("./wishlist");
 
+
+
 const wishlistSchema = new Schema({
+  email:{
+    type:String
+  },
   Name: {
     type: String,
   },
@@ -16,6 +22,11 @@ const wishlistSchema = new Schema({
   },
   order: {
     type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
   },
 });
 

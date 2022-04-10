@@ -14,7 +14,10 @@ const resolvers = {
       //   (getProductWishlist) => getProductWishlist.id === args.id
       // ).populate("wishlist");
     },
-
+    Wishlists: async (parent, { email }) => {
+      const params = email ? { email } : {};
+      return Wishlist.find(params).sort({ createdAt: -1 });
+    },
     GetUser: async (parent, args) => {
       const Users = User.find();
       return Users;
@@ -165,17 +168,37 @@ const resolvers = {
       return { token, user };
     },
     addToWishlist: async (parent, args, context) => {
-      const results = await User.findOneAndUpdate(
-        { email: context.user.email },
-        {
-          $push: {
-            wishlist: { Name: args.Name, Image: args.Image, order: args.order },
+      if (context.user) {
+        const wishlistItemToAdd = await Wishlist.create({
+          ...args,
+          username: context.user.username,
+        });
+        const results = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          {
+            $push: {
+              wishlist: {
+                Name: args.Name,
+                Image: args.Image,
+                order: args.order,
+              },
+            },
           },
-        },
-        { new: true }
-      );
+          { new: true }
+        );
+        return results;
+      }
+      // return results;
+      //   { email: context.user._id },
+      //   {
+      //     $push: {
+      //       wishlist: { Name: args.Name, Image: args.Image, order: args.order },
+      //     },
+      //   },
+      //   { new: true }
+      // );
 
-      return results;
+      // return results;
     },
 
     addOrder: async (parent, { products }, context) => {

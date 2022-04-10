@@ -6,8 +6,8 @@ const secret = "thisisasecret";
 
 // export a sign token assgn the email user id and username
 module.exports = {
-  signToken: function (email, _id) {
-    const payload = { email, _id };
+  signToken: function (firstname,email, _id) {
+    const payload = { firstname,email, _id };
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
   // attatch a payload the payload is the email user id and username

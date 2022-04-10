@@ -8,7 +8,7 @@ const typeDefs = gql`
     lastName: String
 
     email: String
-    wishlist: [UserWishlist]
+    wishlist: [Wishlist]
   }
 
   type Pokemon {
@@ -24,10 +24,12 @@ const typeDefs = gql`
     _id: ID
     name: String
   }
-  type UserWishlist {
+  type Wishlist {
+    _id: ID
     Name: String
     Image: String
     order: String
+    createdAt: String
   }
   type Product {
     _id: ID
@@ -104,7 +106,7 @@ const typeDefs = gql`
     GetUser: User
     getPokemon(name: String!): Pokemon
     getProductWishlist(id: ID): [User]
-
+    Wishlists(email: String): [Wishlist]
     # query to use in graphql playground
     # query{
     #   getProductWishlist{
@@ -125,19 +127,8 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addToWishlist(
-      email: String
-      Name: String
-      Image: String
-      order: String
-    ): User
+    addToWishlist(Name: String, Image: String, order: String): User
 
-    addUser(
-      firstName: String!
-      lastName: String!
-      email: String!
-      password: String!
-    ): Auth
     addOrder(products: [ID]!): Order
     updateUser(
       firstName: String
@@ -146,6 +137,12 @@ const typeDefs = gql`
       password: String
     ): User
     updateProduct(_id: ID!, quantity: Int!): Product
+    addUser(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+    ): Auth
     login(email: String!, password: String!): Auth
     adminlogin(email: String!, password: String!): AdminAuth
   }
