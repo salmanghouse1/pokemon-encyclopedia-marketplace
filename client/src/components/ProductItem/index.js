@@ -50,14 +50,14 @@ function ProductItem(item) {
   return (
     <div className="flex place-items-center space-between flex-wrap">
       <div className="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
-        <Link to={`products/${_id}`}>
+        <Link>
           <figure>
             <img alt={name} src={`${image}`} />
           </figure>
         </Link>
         <div className="card-body">
-          <h2 className="card-title text-white">{name}</h2>
-          <p className="text-secondary">{description}</p>
+          <h2 className="card-title text-white">name</h2>
+          <p className="text-secondary">description</p>
 
           <div className="card-actions justify-end">
             <span>$</span>
@@ -66,10 +66,10 @@ function ProductItem(item) {
             </button>
           </div>
           <div className="card-actions justify-start text-secondary">
-            <div className="badge badge-outline-primary">{category.name}</div>
+            <div className="badge badge-outline-primary">category.name</div>
             <div className="badge badge-outline-primary">
               <b>{price}</b>
-              {quantity} {pluralize("item", quantity)} in stock
+              {quantity} pluralize("item", quantity) in stock
             </div>
             <div className="badge badge-outline-primary">❤️Wishlist</div>
             <div className="badge badge-outline-primary">✔️Added</div>
