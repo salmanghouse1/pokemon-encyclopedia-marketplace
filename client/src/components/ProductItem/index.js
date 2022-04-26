@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { pluralize } from "../../utils/helpers";
 import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import { ADD_TO_WISHLIST } from "../../utils/mutations";
 
-function ProductItem(item) {
+function ProductItem(props, item) {
   const [state, dispatch] = useStoreContext();
 
   const { image, name, _id, price, quantity, description, category } = item;
@@ -50,11 +50,11 @@ function ProductItem(item) {
   return (
     <div className="flex place-items-center space-between flex-wrap">
       <div className="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
-        <Link>
-          <figure>
-            <img alt={name} src={`${image}`} />
-          </figure>
-        </Link>
+        {/* <Link> */}
+        <figure>
+          <img alt={props.name} src={`${props.image}`} />
+        </figure>
+        {/* </Link> */}
         <div className="card-body">
           <h2 className="card-title text-white">name</h2>
           <p className="text-secondary">description</p>
@@ -66,7 +66,7 @@ function ProductItem(item) {
             </button>
           </div>
           <div className="card-actions justify-start text-secondary">
-            <div className="badge badge-outline-primary">category.name</div>
+            <div className="badge badge-outline-primary">{props.name}</div>
             <div className="badge badge-outline-primary">
               <b>{price}</b>
               {quantity} pluralize("item", quantity) in stock
