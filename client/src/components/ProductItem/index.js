@@ -13,6 +13,13 @@ function ProductItem(props, item) {
 
   const { cart } = state;
 
+  const [wishlist,setWishlist]=useState("");
+
+function addToWishlist(item){
+  setWishlist(item);
+  
+}
+
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id);
     if (itemInCart) {
@@ -71,7 +78,7 @@ function ProductItem(props, item) {
               <b>{price}</b>
               {quantity} pluralize("item", quantity) in stock
             </div>
-            <div className="badge badge-outline-primary">❤️Wishlist</div>
+            <div className="badge badge-outline-primary" onClick={addToWishlist(props.id)}>❤️Wishlist</div>
             <div className="badge badge-outline-primary">✔️Added</div>
           </div>
         </div>

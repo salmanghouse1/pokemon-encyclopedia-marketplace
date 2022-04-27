@@ -8,11 +8,12 @@ const Order = require("./Order");
 const dateFormat = require("../utils/dateFormat");
 // const Wishlist = require("./wishlist");
 
-
-
 const wishlistSchema = new Schema({
-  email:{
-    type:String
+  id: {
+    type: String,
+  },
+  email: {
+    type: String,
   },
   Name: {
     type: String,

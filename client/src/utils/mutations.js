@@ -28,11 +28,19 @@ export const ADD_TO_WISHLIST = gql`
     $name: String
     $Image: String
     $order: String
+    $id: String
   ) {
-    addToWishlist(email: $email, Name: $name, Image: $Image, order: $order) {
+    addToWishlist(
+      email: $email
+      Name: $name
+      Image: $Image
+      order: $order
+      id: $id
+    ) {
       firstName
       lastName
       wishlist {
+        id
         Name
         Image
         order
