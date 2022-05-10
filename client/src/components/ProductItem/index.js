@@ -46,6 +46,11 @@ function ProductItem(props, item) {
   //       }
   //   }
   //   )}
+    const [wishlist, setWishlist] = useState("");
+
+    function addToWishlist(item) {
+      setWishlist(item);
+    }
 
   return (
     <div className="flex place-items-center space-between flex-wrap">
@@ -64,6 +69,7 @@ function ProductItem(props, item) {
             <button className="btn btn-primary" onClick={addToCart}>
               Add To Cart
             </button>
+            </button>
           </div>
           <div className="card-actions justify-start text-secondary">
             <div className="badge badge-outline-primary">
@@ -73,7 +79,18 @@ function ProductItem(props, item) {
               <b>{props.url}</b>
               {quantity} pluralize("item", quantity) in stock
             </div>
-            <div className="badge badge-outline-primary">❤️Wishlist</div>
+            <div
+              className="badge badge-outline-primary"
+     onClick={addToWishlist(
+                this.props.id,
+                this.props.name,
+                this.props.setName,
+                this.props.setSeries,
+                this.props.image
+              )}
+            >
+              ❤️Wishlist
+            </div>
             <div className="badge badge-outline-primary">✔️Added</div>
           </div>
         </div>
