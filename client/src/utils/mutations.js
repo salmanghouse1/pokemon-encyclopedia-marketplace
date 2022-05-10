@@ -37,8 +37,7 @@ export const ADD_TO_WISHLIST = gql`
       order: $order
       id: $id
     ) {
-      firstName
-      lastName
+      email
       wishlist {
         id
         Name

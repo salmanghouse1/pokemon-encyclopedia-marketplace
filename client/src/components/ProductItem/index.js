@@ -46,11 +46,21 @@ function ProductItem(props, item) {
   //       }
   //   }
   //   )}
-    const [wishlist, setWishlist] = useState("");
+  const [wishlist, setWishlist] = useState("");
 
-    function addToWishlist(item) {
-      setWishlist(item);
-    }
+  function addToWishlist(idVar, nameVar, setNameVar, setSeriesVar, imgVar) {
+    useMutation(ADD_TO_WISLIST, {
+      variables: {
+        email: "a",
+        name: nameVar,
+        id: idVar,
+        name: nameVar + "|" + setNameVar + setSeriesVar,
+        Image: imgVar,
+      },
+    });
+
+    setWishlist(item);
+  }
 
   return (
     <div className="flex place-items-center space-between flex-wrap">
@@ -69,7 +79,6 @@ function ProductItem(props, item) {
             <button className="btn btn-primary" onClick={addToCart}>
               Add To Cart
             </button>
-            </button>
           </div>
           <div className="card-actions justify-start text-secondary">
             <div className="badge badge-outline-primary">
@@ -81,7 +90,7 @@ function ProductItem(props, item) {
             </div>
             <div
               className="badge badge-outline-primary"
-     onClick={addToWishlist(
+              onClick={addToWishlist(
                 this.props.id,
                 this.props.name,
                 this.props.setName,
