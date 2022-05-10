@@ -13,13 +13,6 @@ function ProductItem(props, item) {
 
   const { cart } = state;
 
-  const [wishlist,setWishlist]=useState("");
-
-function addToWishlist(item){
-  setWishlist(item);
-  
-}
-
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id);
     if (itemInCart) {
@@ -63,22 +56,24 @@ function addToWishlist(item){
         </figure>
         {/* </Link> */}
         <div className="card-body">
-          <h2 className="card-title text-white">name</h2>
-          <p className="text-secondary">description</p>
+          <h2 className="card-title text-white">{props.name}</h2>
+          <p className="text-secondary">{props.url}</p>
 
           <div className="card-actions justify-end">
-            <span>$</span>
+            <span></span>
             <button className="btn btn-primary" onClick={addToCart}>
               Add To Cart
             </button>
           </div>
           <div className="card-actions justify-start text-secondary">
-            <div className="badge badge-outline-primary">{props.name}</div>
             <div className="badge badge-outline-primary">
-              <b>{price}</b>
+              {props.name}|{props.setName}|{props.setSeries}
+            </div>
+            <div className="badge badge-outline-primary">
+              <b>{props.url}</b>
               {quantity} pluralize("item", quantity) in stock
             </div>
-            <div className="badge badge-outline-primary" onClick={addToWishlist(props.id)}>❤️Wishlist</div>
+            <div className="badge badge-outline-primary">❤️Wishlist</div>
             <div className="badge badge-outline-primary">✔️Added</div>
           </div>
         </div>

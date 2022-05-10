@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import ProductItem from "../ProductItem";
 import { useStoreContext } from "../../utils/GlobalState";
 import { UPDATE_PRODUCTS } from "../../utils/actions";
@@ -54,9 +55,6 @@ function ProductList(props) {
 
   return (
     <div>
-      <VideoBg>
-        <VideoBg.Source src={mp4} type="video/mp4" />
-      </VideoBg>
       <h2>Our Products:</h2>
       <div className="flex place-items-center space-between flex-wrap">
         {props.pokemons.map((pokemon) => (
@@ -64,6 +62,9 @@ function ProductList(props) {
             key={pokemon.id}
             image={pokemon.image}
             name={pokemon.name}
+            url={pokemon.url}
+            setName={pokemon.setName}
+            setSeries={pokemon.setSeries}
           />
         ))}
       </div>
