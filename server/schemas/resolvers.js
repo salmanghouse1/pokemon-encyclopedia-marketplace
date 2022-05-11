@@ -106,8 +106,9 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       console.log(context);
+      console.log("running query");
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
+        const userData = await User.findOne()
           .select("-__v -password")
           .populate("wishlist");
 
@@ -131,17 +132,17 @@ const resolvers = {
       console.log(name);
       return { name, order };
     },
-    me: async (parent, args, context) => {
-      if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
-          .select("-__v -password")
-          .populate("wishlist");
+    // me: async (parent, args, context) => {
+    //   if (context.user) {
+    //     const userData = await User.findOne({ _id: context.user._id })
+    //       .select("-__v -password")
+    //       .populate("wishlist");
 
-        return userData;
-      }
+    //     return userData;
+    //   }
 
-      throw new AuthenticationError("Not logged in");
-    },
+    //   throw new AuthenticationError("Not logged in");
+    // },
   },
 
   Mutation: {

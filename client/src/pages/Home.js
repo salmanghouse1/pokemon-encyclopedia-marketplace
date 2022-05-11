@@ -26,7 +26,7 @@ const Home = () => {
             method: "GET", // or 'PUT'
             headers: {
               "Content-Type": "application/json",
-              // "X-Api-Key": "ENTER YOUR KEY HERE",
+              "X-Api-Key": "efc04806-288e-44c7-96cc-fe41fd5d9631",
             },
           }
         );
