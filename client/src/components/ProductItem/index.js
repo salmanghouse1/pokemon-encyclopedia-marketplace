@@ -5,6 +5,7 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import { ADD_TO_WISHLIST } from "../../utils/mutations";
+// import { LikeButton } from "../LikeButton/index";
 
 function ProductItem(props, item) {
   const [state, dispatch] = useStoreContext();
@@ -48,7 +49,7 @@ function ProductItem(props, item) {
   //   )}
   const [wishlist, setWishlist] = useState("");
 
-  function addToWishlist(idVar, nameVar, setNameVar, setSeriesVar, imgVar) {
+  function addToWishlist(idVar, nameVar, imgVar) {
     useMutation(ADD_TO_WISLIST, {
       variables: {
         email: "a",
@@ -92,9 +93,11 @@ function ProductItem(props, item) {
               className="badge badge-outline-primary"
               onClick={addToWishlist(
                 this.props.id,
-                this.props.name,
-                this.props.setName,
-                this.props.setSeries,
+                this.props.name +
+                  "|set:" +
+                  this.props.setName +
+                  "|Series" +
+                  this.props.setSeries,
                 this.props.image
               )}
             >

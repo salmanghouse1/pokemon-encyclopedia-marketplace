@@ -61,7 +61,7 @@ function ProductList(props) {
           <ProductItem
             key={pokemon.id}
             image={pokemon.image}
-            name={pokemon.name}
+            Name={pokemon.name}
             url={pokemon.url}
             setName={pokemon.setName}
             setSeries={pokemon.setSeries}
