@@ -5,8 +5,8 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import { ADD_TO_WISHLIST } from "../../utils/mutations";
-import { useMutation } from "@apollo/client";
-import LikeButton from "../LikeButton/LikeButton";
+import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import { GET_MYID } from "../../utils/queries";
 
 function ProductItem(props, item) {
   const [state, dispatch] = useStoreContext();
@@ -52,19 +52,11 @@ function ProductItem(props, item) {
 
   // const [likePokemon] = useMutation;
 
-  function addToWishlist(idVar, nameVar, imgVar) {
-    useMutation(ADD_TO_WISLIST, {
-      variables: {
-        email: "a",
-        name: nameVar,
-        id: idVar,
-        name: nameVar + "|" + setNameVar + setSeriesVar,
-        Image: imgVar,
-      },
-    });
+  const { loadingID, errorID, dataID } = useQuery(GET_MYID);
 
-    setWishlist(item);
-  }
+  // const [AddItemToWishlist, { loading, dataMYID }] =
+  //   // useLazyQuery(dataID);
+  console.log("a" + dataID);
 
   return (
     <div className="flex place-items-center space-between flex-wrap">
@@ -92,7 +84,12 @@ function ProductItem(props, item) {
               <b>{props.url}</b>
               {quantity} pluralize("item", quantity) in stock
             </div>
-            <LikeButton></LikeButton>
+            <div
+              className="badge badge-outline-primary"
+              // onClick={AddItemToWishlist}
+            >
+              ❤️Wishlist
+            </div>
 
             <div className="badge badge-outline-primary">✔️Added</div>
           </div>

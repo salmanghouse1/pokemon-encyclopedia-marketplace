@@ -19,7 +19,7 @@ const resolvers = {
       return Wishlist.find(params).sort({ createdAt: -1 });
     },
     GetUser: async (parent, args) => {
-      const Users = User.find();
+      const Users = User.find({});
       return Users;
     },
     allproducts: async () => {
@@ -104,11 +104,15 @@ const resolvers = {
 
       return { session: session.id };
     },
+
     me: async (parent, args, context) => {
       console.log(context);
       console.log("running query");
       if (context.user) {
-        const userData = await User.findOne()
+        console.log("Inside func");
+        const userData = await User.findOne({
+          _id: context.user.firstname._id,
+        })
           .select("-__v -password")
           .populate("wishlist");
 
@@ -169,39 +173,37 @@ const resolvers = {
       return { token, user };
     },
     addToWishlist: async (parent, args, context) => {
-      if (context.user) {
-        const wishlistItemToAdd = await Wishlist.create({
-          ...args,
-          username: context.user.username,
-        });
-        const results = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          {
-            $push: {
-              wishlist: {
-                Name: args.Name,
-                Image: args.Image,
-                order: args.order,
-              },
+      // const wishlistItemToAdd = await Wishlist.create({
+      //   ...args,
+      //   username: context.user.firstname.username,
+      // });
+      console.log(args.id);
+      const results = await User.findByIdAndUpdate(
+        { _id: args.id },
+        {
+          $push: {
+            wishlist: {
+              Name: args.Name,
+              Image: args.Image,
+              order: args.order,
             },
           },
-          { new: true }
-        );
-        return results;
-      }
-      // return results;
-      //   { email: context.user._id },
-      //   {
-      //     $push: {
-      //       wishlist: { Name: args.Name, Image: args.Image, order: args.order },
-      //     },
-      //   },
-      //   { new: true }
-      // );
-
-      // return results;
+        },
+        { new: true }
+      );
+      return results;
     },
+    // return results;
+    //   { email: context.user._id },
+    //   {
+    //     $push: {
+    //       wishlist: { Name: args.Name, Image: args.Image, order: args.order },
+    //     },
+    //   },
+    //   { new: true }
+    // );
 
+    // return results;
     addOrder: async (parent, { products }, context) => {
       console.log(context);
       if (context.user) {

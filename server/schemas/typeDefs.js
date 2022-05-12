@@ -127,7 +127,9 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addToWishlist(id:String,Name: String, Image: String, order: String): User
+    addToWishlist(id: String, Name: String, Image: String, order: String): User
+
+    addPokemonToWishlist(pokemonId: String!): User
 
     addOrder(products: [ID]!): Order
     updateUser(

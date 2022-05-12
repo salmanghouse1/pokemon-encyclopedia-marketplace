@@ -12,6 +12,7 @@ const wishlistSchema = new Schema({
   id: {
     type: String,
   },
+
   email: {
     type: String,
   },

@@ -1,8 +1,5 @@
 import { gql } from "@apollo/client";
 
-
-
-
 export const QUERY_PRODUCTS = gql`
   query products($category: ID, $name: String) {
     products(category: $category, name: $name) {
@@ -75,6 +72,14 @@ export const QUERY_USER = gql`
           image
         }
       }
+    }
+  }
+`;
+
+export const GET_MYID = gql`
+  {
+    me {
+      id
     }
   }
 `;
