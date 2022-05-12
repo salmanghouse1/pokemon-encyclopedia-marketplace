@@ -119,11 +119,11 @@ const [addToWishlistHandler, { data2, loading2, error2 }] = useMutation(ADD_TO_W
       <div className="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
         {/* <Link> */}
         <figure>
-          <img alt={props.name} src={`${props.image}`} />
+          <img alt={props.Name} src={`${props.image}`} />
         </figure>
         {/* </Link> */}
         <div className="card-body">
-          <h2 className="card-title text-white">{props.name}</h2>
+          <h2 className="card-title text-white">{props.Name}</h2>
           <p className="text-secondary">{props.url}</p>
 
           <div className="card-actions justify-end">
@@ -134,15 +134,14 @@ const [addToWishlistHandler, { data2, loading2, error2 }] = useMutation(ADD_TO_W
           </div>
           <div className="card-actions justify-start text-secondary">
             <div className="badge badge-outline-primary">
-              {props.name}|{props.setName}|{props.setSeries}
+              {props.Name}|{props.setName}|{props.setSeries}
             </div>
             <div className="badge badge-outline-primary">
               <b>{props.url}</b>
               {quantity} pluralize("item", quantity) in stock
             </div>
-            <div
-              className="badge badge-outline-primary"
-              onClick={()=>{useMutation(ADD_TO_WISHLIST,{variables:{idInput,this.props.name+"|"+this.props.setName+"|"+this.props.setSeries,this.props.image,"3"}}}}>
+            <div className="badge badge-outline-primary"
+              onClick={(props)=>{useMutation(ADD_TO_WISHLIST,{variables:{idInput,props.Name,props.image,"3"}}}}>
                                   ❤️Wishlist
             </div>
 
