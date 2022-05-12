@@ -75,11 +75,3 @@ export const QUERY_USER = gql`
     }
   }
 `;
-
-export const GET_MYID = gql`
-  {
-    me {
-      id
-    }
-  }
-`;

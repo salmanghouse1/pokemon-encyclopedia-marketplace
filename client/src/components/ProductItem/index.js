@@ -5,15 +5,49 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import { ADD_TO_WISHLIST } from "../../utils/mutations";
-import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import { gql, useLazyQuery, useMutation, useLazyMutation, useQuery } from "@apollo/client";
 import { GET_MYID } from "../../utils/queries";
 
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+
 function ProductItem(props, item) {
+  const GET_MYID = gql`
+    query me {
+      me {
+        _id
+      }
+    }
+  `;
+
+  const httpLink = createHttpLink({
+    uri: "/graphql",
+  });
+
+  const authLink = setContext((_, { headers }) => {
+    // get the authentication token from local storage if it exists
+    const token = localStorage.getItem("token");
+
+    // return the headers to the context so httpLink can read them
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : "",
+      },
+    };
+  });
+
+  const client = new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache(),
+  });
+
   const [state, dispatch] = useStoreContext();
 
-  const { image, name, _id, price, quantity, description, category } = item;
 
   const { cart } = state;
+
+  console.log("");
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id);
@@ -52,11 +86,33 @@ function ProductItem(props, item) {
 
   // const [likePokemon] = useMutation;
 
-  const { loadingID, errorID, dataID } = useQuery(GET_MYID);
+  const { loading, error, data } = useQuery(GET_MYID);
 
   // const [AddItemToWishlist, { loading, dataMYID }] =
   //   // useLazyQuery(dataID);
-  console.log("a" + dataID);
+  console.log(loading);
+  console.log(error);
+  console.log(data.me._id);
+
+  const idInput=data.me._id;
+
+const ADD_TO_WISHLIST=gql`
+mutation addToWishlist($id:String,$name:String,$Image:String,$order:String){
+  addToWishlist(id:$id,Name:$name,Image:$Image,order:$order){
+  _id
+    firstName
+    lastName
+    email
+    wishlist{
+      _id
+      Name
+      Image
+      order
+      createdAt
+    }
+  }`
+
+const [addToWishlistHandler, { data2, loading2, error2 }] = useMutation(ADD_TO_WISHLIST)  
 
   return (
     <div className="flex place-items-center space-between flex-wrap">
@@ -86,9 +142,8 @@ function ProductItem(props, item) {
             </div>
             <div
               className="badge badge-outline-primary"
-              // onClick={AddItemToWishlist}
-            >
-              ❤️Wishlist
+              onClick={()=>{useMutation(ADD_TO_WISHLIST,{variables:{idInput,this.props.name+"|"+this.props.setName+"|"+this.props.setSeries,this.props.image,"3"}}}}>
+                                  ❤️Wishlist
             </div>
 
             <div className="badge badge-outline-primary">✔️Added</div>
