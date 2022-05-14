@@ -6,8 +6,21 @@ import Cart from "../components/Cart";
 import VideoBg from "reactjs-videobg";
 import mp4 from "../assets/videos/video.mp4";
 import Auth from "../utils/auth";
+import { gql, useQuery } from "@apollo/client";
+
+import LikeButton from "../components/LikeButton/index";
+
 const Home = () => {
   if (Auth.loggedIn()) {
+    const GET_MYID = gql`
+      query me {
+        me {
+          _id
+        }
+      }
+    `;
+    const { loading, data } = useQuery(GET_MYID);
+
     let textInput = React.createRef();
     let retrievedData = "";
 
@@ -35,6 +48,8 @@ const Home = () => {
         }
         const dataPokemons = await response.json();
         console.log(dataPokemons.data);
+
+        console.log("My user id" + data.me._id);
         let transformedData = dataPokemons.data.map((dataPokemon) => {
           return {
             id: dataPokemon.id,
@@ -44,6 +59,8 @@ const Home = () => {
             setSeries: dataPokemon.set.series,
             price: dataPokemon.cardmarket.prices.averageSellPrice,
             // url: JSON.stringify(dataPokemon.cardmarket.prices.averageSellPrice)
+            // myUserid:data.me
+            userId: data.me._id,
           };
         });
         console.log(transformedData);
@@ -71,9 +88,46 @@ const Home = () => {
           Get Cards
         </button>
 
-        {!isLoading && pokemons.length > 0 && (
-          <ProductList pokemons={pokemons} />
-        )}
+        {!isLoading &&
+          pokemons.length > 0 &&
+          pokemons.map((pokemon) => {
+            <div className="flex place-items-center space-between flex-wrap">
+              <div className="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
+                {/* <Link> */}
+                <figure>
+                  <img alt={pokemon.name} src={`${pokemon.image}`} />
+                </figure>
+                {/* </Link> */}
+                <div className="card-body">
+                  <h2 className="card-title text-white">{pokemon.name}</h2>
+                  <p className="text-secondary">{pokemon.url}</p>
+
+                  <div className="card-actions justify-end">
+                    <span></span>
+                    <button
+                      className="btn btn-primary"
+                      // onClick={addToCart}
+                    >
+                      Add To Cart
+                    </button>
+                  </div>
+                  <div className="card-actions justify-start text-secondary">
+                    <div className="badge badge-outline-primary">
+                      {pokemon.name}|{pokemon.setName}|{pokemon.setSeries}
+                    </div>
+                    <LikeButton
+                      userId={this.pokemon.userId}
+                      postId={this.pokemon.id}
+                    />
+                    <div className="badge badge-outline-primary">
+                      <b>{pokemon.url}</b>
+                      {quantity} pluralize("item", quantity) in stock
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>;
+          })}
         {!isLoading && pokemons.length === 0 && !error && (
           <p>Found no Pokemon</p>
         )}
