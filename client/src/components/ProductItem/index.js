@@ -5,9 +5,15 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 import { ADD_TO_WISHLIST } from "../../utils/mutations";
-import { gql, useLazyQuery, useMutation, useLazyMutation, useQuery } from "@apollo/client";
+import {
+  gql,
+  useLazyQuery,
+  useMutation,
+  useLazyMutation,
+  useQuery,
+} from "@apollo/client";
 import { GET_MYID } from "../../utils/queries";
-
+import LikeButton from "./../LikeButton/index";
 import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
@@ -43,7 +49,6 @@ function ProductItem(props, item) {
   });
 
   const [state, dispatch] = useStoreContext();
-
 
   const { cart } = state;
 
@@ -94,9 +99,9 @@ function ProductItem(props, item) {
   console.log(error);
   console.log(data.me._id);
 
-  const idInput=data.me._id;
+  const idInput = data.me._id;
 
-const ADD_TO_WISHLIST=gql`
+  const ADD_TO_WISHLIST = gql`
 mutation addToWishlist($id:String,$name:String,$Image:String,$order:String){
   addToWishlist(id:$id,Name:$name,Image:$Image,order:$order){
   _id
@@ -110,20 +115,21 @@ mutation addToWishlist($id:String,$name:String,$Image:String,$order:String){
       order
       createdAt
     }
-  }`
+  }`;
 
-const [addToWishlistHandler, { data2, loading2, error2 }] = useMutation(ADD_TO_WISHLIST)  
+  const [addToWishlistHandler, { data2, loading2, error2 }] =
+    useMutation(ADD_TO_WISHLIST);
 
   return (
     <div className="flex place-items-center space-between flex-wrap">
       <div className="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
         {/* <Link> */}
         <figure>
-          <img alt={props.Name} src={`${props.image}`} />
+          <img alt={props.name} src={`${props.image}`} />
         </figure>
         {/* </Link> */}
         <div className="card-body">
-          <h2 className="card-title text-white">{props.Name}</h2>
+          <h2 className="card-title text-white">{props.name}</h2>
           <p className="text-secondary">{props.url}</p>
 
           <div className="card-actions justify-end">
@@ -134,18 +140,13 @@ const [addToWishlistHandler, { data2, loading2, error2 }] = useMutation(ADD_TO_W
           </div>
           <div className="card-actions justify-start text-secondary">
             <div className="badge badge-outline-primary">
-              {props.Name}|{props.setName}|{props.setSeries}
+              {props.name}|{props.setName}|{props.setSeries}
             </div>
+            <LikeButton user={user} post={{ id, likeCount, likes }} />
             <div className="badge badge-outline-primary">
               <b>{props.url}</b>
               {quantity} pluralize("item", quantity) in stock
             </div>
-            <div className="badge badge-outline-primary"
-              onClick={(props)=>{useMutation(ADD_TO_WISHLIST,{variables:{idInput,props.Name,props.image,"3"}}}}>
-                                  ❤️Wishlist
-            </div>
-
-            <div className="badge badge-outline-primary">✔️Added</div>
           </div>
         </div>
       </div>

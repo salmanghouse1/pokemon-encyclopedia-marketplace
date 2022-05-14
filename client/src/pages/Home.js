@@ -42,6 +42,7 @@ const Home = () => {
             image: dataPokemon.images.small,
             setName: dataPokemon.set.name,
             setSeries: dataPokemon.set.series,
+            price: dataPokemon.cardmarket.prices.averageSellPrice,
             // url: JSON.stringify(dataPokemon.cardmarket.prices.averageSellPrice)
           };
         });
