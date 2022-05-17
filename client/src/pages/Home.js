@@ -39,7 +39,7 @@ const Home = () => {
             method: "GET", // or 'PUT'
             headers: {
               "Content-Type": "application/json",
-              // "X-Api-Key": "efc04806-288e-44c7-96cc-fe41fd5d9631",
+              // "X-Api-Key": ,
             },
           }
         );
@@ -116,8 +116,17 @@ const Home = () => {
                       {pokemon.name}|{pokemon.setName}|{pokemon.setSeries}
                     </div>
                     <LikeButton
-                      userId={this.pokemon.userId}
-                      postId={this.pokemon.id}
+                      userId={pokemon.userId}
+                      postId={pokemon.id}
+                      pokemonName={
+                        pokemon.name +
+                        "|" +
+                        pokemon.setName +
+                        "|" +
+                        pokemon.setSeries
+                      }
+                      image={pokemon.image}
+                      url={pokemon.url}
                     />
                     <div className="badge badge-outline-primary">
                       <b>{pokemon.url}</b>

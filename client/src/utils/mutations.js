@@ -23,29 +23,23 @@ export const ADD_TO_FAV = gql`
 `;
 
 export const ADD_TO_WISHLIST = gql`
-  mutation addToWishlist(
-    $email: String
-    $name: String
-    $Image: String
-    $order: String
-    $id: String
-  ) {
-    addToWishlist(
-      email: $email
-      Name: $name
-      Image: $Image
-      order: $order
-      id: $id
-    ) {
-      email
-      wishlist {
-        id
-        Name
-        Image
-        order
-      }
+  mutation addToWishlist($id:String,$name:String,$Image:String,$postId:String){
+  addToWishlist(id:$id,Name:$name,Image:$Image,postId:$postId){
+  _id
+    firstName
+    lastName
+    email
+    wishlist{
+      _id
+      Name
+      Image
+      order
+      createdAt
+      postId
     }
   }
+  }
+  
 `;
 
 export const ADMINLOGIN = gql`

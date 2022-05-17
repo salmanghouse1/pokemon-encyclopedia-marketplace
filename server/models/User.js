@@ -25,6 +25,9 @@ const wishlistSchema = new Schema({
   order: {
     type: String,
   },
+  postId: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
