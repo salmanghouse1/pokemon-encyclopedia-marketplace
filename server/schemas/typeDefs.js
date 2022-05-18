@@ -29,6 +29,7 @@ const typeDefs = gql`
     Name: String
     Image: String
     order: String
+    postId: String
     createdAt: String
   }
   type Product {
@@ -127,7 +128,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addToWishlist(postId:String,id: String, Name: String, Image: String): User
+    addToWishlist(postId: String, id: String, Name: String, Image: String): User
 
     addPokemonToWishlist(pokemonId: String!): User
 

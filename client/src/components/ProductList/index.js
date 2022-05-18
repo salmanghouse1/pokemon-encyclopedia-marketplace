@@ -2,32 +2,27 @@ import React, { useEffect, useState } from "react";
 
 // import ProductItem from "../ProductItem";
 import { useStoreContext } from "../../utils/GlobalState";
-
+import ProductItem from "./../ProductItem/index";
 // import { UPDATE_PRODUCTS } from "../../utils/actions";
-import { useQuery } from "@apollo/client";
-// import { QUERY_ALL_PRODUCTS, QUERY_PRODUCTS } from "../../utils/queries";
-import { idbPromise } from "../../utils/helpers";
-import spinner from "../../assets/spinner.gif";
-import VideoBg from "reactjs-videobg";
-// import ogg from "./videos/Neon.ogg";
-// import webm from "./videos/Neon.webm";
-import mp4 from "../../assets/videos/video.mp4";
-// import poster from "./img/poster.jpg";
-import LikeButton from "../LikeButton/index";
-import gql from "graphql-tag";
 
-function ProductList(pokemons) {
+function ProductList(props) {
   const [state, dispatch] = useStoreContext();
 
   const { currentCategory } = state;
-
-  console.log("THe pokemons" + pokemons);
 
   return (
     <div>
       <h2>Our Products:</h2>
       <div className="flex place-items-center space-between flex-wrap">
-        <ProductItem></ProductItem>
+        {props.pokemons.map((pokemon) => (
+          <ProductItem
+            key={pokemon.id + pokemon.name}
+            image={pokemon.image}
+            name={pokemon.name}
+            set={pokemon.setName}
+            series={pokemon.setSeries}
+          />
+        ))}
       </div>
     </div>
   );

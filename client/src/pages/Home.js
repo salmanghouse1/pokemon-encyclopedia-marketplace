@@ -1,6 +1,6 @@
 import React, { useState, createContext } from "react";
 import { Link } from "react-router-dom";
-import ProductItem from "../components/ProductItem";
+import ProductList from "../components/ProductList";
 import CategoryMenu from "../components/CategoryMenu";
 import Cart from "../components/Cart";
 import VideoBg from "reactjs-videobg";
@@ -10,7 +10,7 @@ import { gql, useQuery } from "@apollo/client";
 
 import LikeButton from "../components/LikeButton/index";
 
-let loadingContextName = createContext();
+let userIdContextName = createContext();
 
 const Home = () => {
   if (Auth.loggedIn()) {
@@ -89,8 +89,16 @@ const Home = () => {
           Get Cards
         </button>
         <div className="flex place-items-center space-between flex-wrap">
-          {console.log(pokemons)}
-          <ProductList />
+          {!isLoading && pokemons.length > 0 && (
+            <userIdContextName.Provider value={data.me._id}>
+              <ProductList pokemons={pokemons} value={data.me._id} />
+            </userIdContextName.Provider>
+          )}
+          {!isLoading && pokemons.length === 0 && !error && (
+            <p>Found no Pokemon</p>
+          )}
+          {isLoading && <p>Loading...</p>}
+          {!isLoading && error && <p>{error}</p>}
         </div>
       </div>
     );
@@ -113,5 +121,5 @@ const Home = () => {
   }
 };
 
-export { loadingContextName };
+export { userIdContextName };
 export default Home;

@@ -23,8 +23,8 @@ export const ADD_TO_FAV = gql`
 `;
 
 export const ADD_TO_WISHLIST = gql`
-  mutation addToWishlist($id:String,$name:String,$Image:String,$postId:String){
-  addToWishlist(id:$id,Name:$name,Image:$Image,postId:$postId){
+  mutation addToWishlist($id:String,$Name:String,$Image:String,$postId:String){
+  addToWishlist(id:$id,Name:$Name,Image:$Image,postId:$postId){
   _id
     firstName
     lastName
