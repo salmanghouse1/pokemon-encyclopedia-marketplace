@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import { Link } from "react-router-dom";
-import ProductList from "../components/ProductList";
+import ProductItem from "../components/ProductItem";
 import CategoryMenu from "../components/CategoryMenu";
 import Cart from "../components/Cart";
 import VideoBg from "reactjs-videobg";
@@ -9,6 +9,8 @@ import Auth from "../utils/auth";
 import { gql, useQuery } from "@apollo/client";
 
 import LikeButton from "../components/LikeButton/index";
+
+let loadingContextName = createContext();
 
 const Home = () => {
   if (Auth.loggedIn()) {
@@ -21,9 +23,9 @@ const Home = () => {
     `;
     const { loading, data } = useQuery(GET_MYID);
 
+    console.log(data);
     let textInput = React.createRef();
     let retrievedData = "";
-
     const [pokemons, setPokemons] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -32,6 +34,7 @@ const Home = () => {
 
     async function fetchData() {
       setIsLoading(true);
+      console.log("Enter");
       try {
         const response = await fetch(
           `https://api.pokemontcg.io/v2/cards/?q=name%3A${textInput.current.value}`,
@@ -39,7 +42,7 @@ const Home = () => {
             method: "GET", // or 'PUT'
             headers: {
               "Content-Type": "application/json",
-              // "X-Api-Key": ,
+              "X-Api-Key": "bfdb3ffa-1d4b-46c6-9e47-8a353e633eba",
             },
           }
         );
@@ -50,7 +53,7 @@ const Home = () => {
         console.log(dataPokemons.data);
 
         console.log("My user id" + data.me._id);
-        let transformedData = dataPokemons.data.map((dataPokemon) => {
+        let transformedDatas = dataPokemons.data.map((dataPokemon) => {
           return {
             id: dataPokemon.id,
             name: dataPokemon.name,
@@ -63,9 +66,9 @@ const Home = () => {
             userId: data.me._id,
           };
         });
-        console.log(transformedData);
-        setPokemons(transformedData);
-        console.log(pokemons);
+        console.log("return" + transformedDatas);
+
+        setPokemons(transformedDatas);
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -73,11 +76,9 @@ const Home = () => {
         setIsLoading(false);
       }
     }
+
     return (
       <div className="container">
-        <VideoBg>
-          <VideoBg.Source src={mp4} type="video/mp4" />
-        </VideoBg>
         <CategoryMenu />
         <input
           type="text"
@@ -87,63 +88,10 @@ const Home = () => {
         <button className="btn btn-primary" onClick={fetchData}>
           Get Cards
         </button>
-
-        {!isLoading &&
-          pokemons.length > 0 &&
-          pokemons.map((pokemon) => {
-            <div className="flex place-items-center space-between flex-wrap">
-              <div className="card w-96 glass flex-shrink ml-6 mr-6 mt-6">
-                {/* <Link> */}
-                <figure>
-                  <img alt={pokemon.name} src={`${pokemon.image}`} />
-                </figure>
-                {/* </Link> */}
-                <div className="card-body">
-                  <h2 className="card-title text-white">{pokemon.name}</h2>
-                  <p className="text-secondary">{pokemon.url}</p>
-
-                  <div className="card-actions justify-end">
-                    <span></span>
-                    <button
-                      className="btn btn-primary"
-                      // onClick={addToCart}
-                    >
-                      Add To Cart
-                    </button>
-                  </div>
-                  <div className="card-actions justify-start text-secondary">
-                    <div className="badge badge-outline-primary">
-                      {pokemon.name}|{pokemon.setName}|{pokemon.setSeries}
-                    </div>
-                    <LikeButton
-                      userId={pokemon.userId}
-                      postId={pokemon.id}
-                      pokemonName={
-                        pokemon.name +
-                        "|" +
-                        pokemon.setName +
-                        "|" +
-                        pokemon.setSeries
-                      }
-                      image={pokemon.image}
-                      url={pokemon.url}
-                    />
-                    <div className="badge badge-outline-primary">
-                      <b>{pokemon.url}</b>
-                      {quantity} pluralize("item", quantity) in stock
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>;
-          })}
-        {!isLoading && pokemons.length === 0 && !error && (
-          <p>Found no Pokemon</p>
-        )}
-        {isLoading && <p>Loading...</p>}
-        {!isLoading && error && <p>{error}</p>}
-
-        <Cart />
+        <div className="flex place-items-center space-between flex-wrap">
+          {console.log(pokemons)}
+          <ProductList />
+        </div>
       </div>
     );
   } else {
@@ -165,4 +113,5 @@ const Home = () => {
   }
 };
 
+export { loadingContextName };
 export default Home;

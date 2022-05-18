@@ -13,16 +13,10 @@ const wishlistSchema = new Schema({
     type: String,
   },
 
-  email: {
-    type: String,
-  },
   Name: {
     type: String,
   },
   Image: {
-    type: String,
-  },
-  order: {
     type: String,
   },
   postId: {

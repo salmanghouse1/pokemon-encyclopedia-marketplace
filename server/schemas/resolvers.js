@@ -181,9 +181,10 @@ const resolvers = {
       const results = await User.findByIdAndUpdate(
         { _id: args.id },
         {
-          $push: {
+          $addToSet: {
             wishlist: {
               Name: args.Name,
+              postId: args.postId,
               Image: args.Image,
               order: args.order,
             },

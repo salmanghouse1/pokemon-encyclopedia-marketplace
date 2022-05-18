@@ -27,7 +27,7 @@ function ProductList(pokemons) {
     <div>
       <h2>Our Products:</h2>
       <div className="flex place-items-center space-between flex-wrap">
-        
+        <ProductItem></ProductItem>
       </div>
     </div>
   );

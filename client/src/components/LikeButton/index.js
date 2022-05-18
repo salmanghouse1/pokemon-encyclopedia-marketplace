@@ -9,12 +9,7 @@ function LikeButton({ postId, id, Image, Name }) {
 
   return (
     <div>
-      <div
-        className="badge badge-outline-primary"
-        onClick={() => {
-          likePost;
-        }}
-      >
+      <div className="badge badge-outline-primary" onClick={() => likePost}>
         ❤️Wishlist
       </div>
     </div>

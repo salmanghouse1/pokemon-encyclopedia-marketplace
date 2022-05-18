@@ -12,9 +12,6 @@ const GameStats = () => {
   if (Auth.loggedIn()) {
     return (
       <div>
-        <VideoBg>
-          <VideoBg.Source src={mp4} type="video/mp4" />
-        </VideoBg>
         <h1>Game Stats</h1>
         {
           <ProductList />
