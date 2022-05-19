@@ -55,7 +55,8 @@ const Home = () => {
         console.log("My user id" + data.me._id);
         let transformedDatas = dataPokemons.data.map((dataPokemon) => {
           return {
-            id: dataPokemon.id,
+            postId: dataPokemon.id,
+
             name: dataPokemon.name,
             image: dataPokemon.images.small,
             setName: dataPokemon.set.name,

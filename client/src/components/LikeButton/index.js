@@ -16,6 +16,7 @@ function LikeButton(props) {
         onClick={(e) => {
           e.preventDefault();
           console.log("enteredOnClick");
+          console.log(typeof props.pokemonId);
           likePost({
             variables: {
               id: props.userId,

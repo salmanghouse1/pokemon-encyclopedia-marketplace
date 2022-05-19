@@ -16,8 +16,9 @@ function ProductList(props) {
       <div className="flex place-items-center space-between flex-wrap">
         {props.pokemons.map((pokemon) => (
           <ProductItem
-            key={pokemon.id + pokemon.name}
+            key={pokemon.postId + pokemon.name}
             image={pokemon.image}
+            pokemonId={pokemon.postId}
             name={pokemon.name}
             set={pokemon.setName}
             series={pokemon.setSeries}

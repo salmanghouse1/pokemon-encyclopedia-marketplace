@@ -65,7 +65,7 @@ function ProductItem(props) {
             </div>
             <LikeButton
               userId={value}
-              postId={props.id}
+              postId={props.pokemonId}
               pokemonName={props.name + "|" + props.set + "|" + props.series}
               image={props.image}
             />
