@@ -49,6 +49,7 @@ function App() {
           <StoreProvider>
             {/* <StoreProvider> */}
             <Nav />
+
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/login" component={Login} />

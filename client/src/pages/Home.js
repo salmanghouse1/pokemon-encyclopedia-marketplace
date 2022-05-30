@@ -8,6 +8,7 @@ import mp4 from "../assets/videos/video.mp4";
 import Auth from "../utils/auth";
 import { gql, useQuery } from "@apollo/client";
 
+import car from "./../assets/img/bg.jpeg";
 import LikeButton from "../components/LikeButton/index";
 
 let userIdContextName = createContext();
@@ -77,10 +78,23 @@ const Home = () => {
         setIsLoading(false);
       }
     }
-
+    const style = {
+      backgroundImage: "url(" + "./../assets/img/bg.jpeg" + ")",
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+    };
     return (
-      <div className="container">
+      <div
+        className="container"
+        style={{
+          backgroundImage: `url(${car})`,
+          height: "100%;",
+          position: "absolute",
+        }}
+      >
         <CategoryMenu />
+
         <input
           type="text"
           className="input input-primary"
